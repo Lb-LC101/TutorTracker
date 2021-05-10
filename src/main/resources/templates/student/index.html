@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<div class="container-fluid">
+    <h2 th:unless="${students} and ${students.size()}">No Student Profiles Exist
+        <a th:href="@{/students/create}">create a Student Profile</a></h2>
+    <table class="table table-striped" th:if="${students} and ${students.size()} > 0">
+        <thead>
+        <tr>
+            <th>Student First Name</th>
+            <th>Student last Name</th>
+        </tr>
+        </thead>
+        <tr th:each="student : ${students}">
+            <td><a th:text="${student.FirstName}"></a></td>
+            <td><a th:text="${student.LastName}"></a></td>
+            <td><a th:text="Edit" th:value = "${student.id}" th:href="'students/edit/' + ${student.id}"></a></td>
+        </tr>
+    </table>
+    <input type="submit" value="Return to main menu" class="btn btn-primary">
+</div>
+</body>
+</html>

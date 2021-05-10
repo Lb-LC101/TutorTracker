@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Student Profile</title>
+</head>
+<body>
+<div class="container-fluid">
+    <form method="post" th:action="@{/students/edit}">
+        <input type="hidden" th:value="${student.id}" name="studentId">
+        <div class="form-group">
+            <label>First Name
+                <input th:field="${student.firstName}" required class="form-control">
+            </label>
+            <span th:errors="${student.firstName}" class="error"></span>
+        </div>
+        <label>Last Name
+            <input th:field="${student.lastName}" required class="form-control">
+        </label>
+        <span th:errors="${student.lastName}" class="error"></span>
+        <input type="submit" value="Edit Complete" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>
