@@ -15,7 +15,6 @@ import java.util.Optional;
 @RequestMapping("students")
 public class StudentController {
 
-
         @Autowired
         private StudentRepository studentRepository;
 
@@ -55,10 +54,10 @@ public class StudentController {
 
     //update student profile
     @GetMapping("edit/{studentId}")
-    public String displayEditCategoryForm(@PathVariable int studentId, Model model) {
+    public String displayEditStudentForm(@PathVariable int studentId, Model model) {
         Optional<Student> result = studentRepository.findById(studentId);
         if (result.isEmpty()) {
-            model.addAttribute("title", "Invalid Category ID: " + studentId);
+            model.addAttribute("title", "Invalid Student ID: " + studentId);
         } else {
             Student student = result.get();
             model.addAttribute("title", "Edit Student First Name" + student.getFirstName());

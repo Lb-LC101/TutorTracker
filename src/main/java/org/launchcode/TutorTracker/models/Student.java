@@ -20,8 +20,6 @@ public class Student extends AbstractEntity {
     @Size(min=1, message = "Last name is required")
     private String lastName;
 
-
-
     //constructors
     public Student(String firstName, String lastName){
         this.firstName = firstName;
@@ -30,6 +28,7 @@ public class Student extends AbstractEntity {
 
     public Student() {
     }
+
     //getters and setters
 
     public String getFirstName() {

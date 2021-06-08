@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid">
+        <form method="post" th:action="@{/books/edit}">
+            <input type="hidden" th:value="${book.id}" name="bookId">
+            <div class="form-group">
+                <label>Book Name
+                    <input th:field="${book.bookName}" required class="form-control">
+                </label>
+                <span th:errors="${book.bookName}" class="error"></span>
+            </div>
+            <label>Last Name
+                <input th:field="${book.bookDescription}" required class="form-control">
+            </label>
+            <span th:errors="${book.bookDescription}" class="error"></span>
+            <input type="submit" value="Edit Complete" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>

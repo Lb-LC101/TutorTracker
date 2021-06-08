@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h2 th:unless="${books} and ${books.size()}">No Book Profiles Exist
+            <a th:href="@{/books/create}">create a Book Profile</a></h2>
+        <table class="table table-striped" th:if="${books} and ${books.size()} > 0">
+            <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Book Description</th>
+            </tr>
+            </thead>
+            <tr th:each="book : ${books}">
+                <td><a th:text="${book.BookName}"></a></td>
+                <td><a th:text="${book.BookDescription}"></a></td>
+                <td><a th:text="Edit" th:value = "${book.id}" th:href="'books/edit/' + ${book.id}"></a></td>
+            </tr>
+        </table>
+        <input type="submit" value="Return to main menu" class="btn btn-primary">
+    </div>
+</body>
+</html>
