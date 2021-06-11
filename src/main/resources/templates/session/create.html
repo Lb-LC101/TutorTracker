@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<form method="post">
+    <div class="form-group">
+        <label>Session Date
+            <input type="date" th:field="${session.sessionDate}" th:value="${session.sessionDate}" class="form-control">
+        </label>
+        <span th:errors="${session.sessionDate}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Session Note
+            <textarea th:field="${session.sessionNote}" th:value="${session.sessionNote}" class="form-control"></textarea>
+        </label>
+        <span th:errors="${session.sessionNote}" class="error"></span>
+    </div>
+    <input type="submit" value="Create Session" class="btn btn-primary">
+</form>
+</body>
+</html>
