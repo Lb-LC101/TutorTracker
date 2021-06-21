@@ -1,9 +1,12 @@
 package org.launchcode.TutorTracker.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +22,9 @@ public class Student extends AbstractEntity {
     @NotNull
     @Size(min=1, message = "Last name is required")
     private String lastName;
+
+    @OneToMany (mappedBy = "student")
+    private final List<Session> sessions = new ArrayList<>();
 
     //constructors
     public Student(String firstName, String lastName){
@@ -47,4 +53,7 @@ public class Student extends AbstractEntity {
         this.lastName = lastName;
     }
 
+    public List<Session> getSessions() {
+        return sessions;
     }
+}

@@ -1,29 +1,31 @@
 package org.launchcode.TutorTracker.models;
 
 import javax.persistence.Entity;
-import java.util.Date;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Session extends AbstractEntity{
 
     //variables
-    //private Date sessionDate;
     private String sessionDate;
     private String sessionNote;
 
+    @ManyToOne
+    private Student student;
+
     //constructors
 
-    public Session(String sessionDate, String sessionNote){
+    public Session(String sessionDate, String sessionNote, Student student){
         this.sessionDate = sessionDate;
         this.sessionNote = sessionNote;
+        this.student = student;
     }
 
     public Session() {
     }
 
     //getters and setters
-
 
     public String getSessionDate() {
         return sessionDate;
@@ -39,5 +41,13 @@ public class Session extends AbstractEntity{
 
     public void setSessionNote(String sessionNote) {
         this.sessionNote = sessionNote;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }
