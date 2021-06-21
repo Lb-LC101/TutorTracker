@@ -1,6 +1,7 @@
 package org.launchcode.TutorTracker.controllers;
 
 import org.launchcode.TutorTracker.data.SessionRepository;
+import org.launchcode.TutorTracker.data.StudentRepository;
 import org.launchcode.TutorTracker.models.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class SessionController {
 
     @Autowired
     private SessionRepository sessionRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     @GetMapping
     public String displayAllSessions(Model model) {
@@ -49,7 +53,6 @@ public class SessionController {
 
         sessionRepository.save(newSession);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
-       // return "redirect:/session";
         return "redirect:/";
     }
 

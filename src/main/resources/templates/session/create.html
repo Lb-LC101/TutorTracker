@@ -8,8 +8,7 @@
 <form method="post">
     <div class="form-group">
         <label>Session Date
-            <input type="date" th:field="${session.sessionDate}" class="form-control">
-            <!--input type="date" th:field="${session.sessionDate}" th:value="${session.sessionDate}" class="form-control"-->
+            <input type="date" th:field="${session.sessionDate}" th:value="${session.sessionDate}" class="form-control">
         </label>
         <span th:errors="${session.sessionDate}" class="error"></span>
     </div>
