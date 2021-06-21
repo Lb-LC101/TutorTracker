@@ -37,19 +37,20 @@ public class SessionController {
     }
 
     @PostMapping("create")
-    public String processCreateSessionForm(@Valid @ModelAttribute Session session,
+    public String processCreateSessionForm(@ModelAttribute @Valid Session newSession,
                                            Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Session Profile");
-            model.addAttribute(new Session());
+            //model.addAttribute(new Session());
             // session/create is the file path in the project structure
             return "session/create";
         }
 
-        sessionRepository.save(session);
+        sessionRepository.save(newSession);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
-        return "redirect:/session";
+       // return "redirect:/session";
+        return "redirect:/";
     }
 
 
@@ -69,7 +70,7 @@ public class SessionController {
     }
 
     @PostMapping("edit")
-    public String processEditSessionForm(int sessionId, Date sessionDate, String sessionNote) {
+    public String processEditSessionForm(int sessionId, String sessionDate, String sessionNote) {
         Session session = sessionRepository.findById(sessionId).get();
         session.setSessionDate(sessionDate);
         session.setSessionNote(sessionNote);

@@ -8,12 +8,13 @@ import java.util.Date;
 public class Session extends AbstractEntity{
 
     //variables
-    private Date sessionDate;
+    //private Date sessionDate;
+    private String sessionDate;
     private String sessionNote;
 
     //constructors
 
-    public Session(Date sessionDate, String sessionNote){
+    public Session(String sessionDate, String sessionNote){
         this.sessionDate = sessionDate;
         this.sessionNote = sessionNote;
     }
@@ -24,11 +25,11 @@ public class Session extends AbstractEntity{
     //getters and setters
 
 
-    public Date getSessionDate() {
+    public String getSessionDate() {
         return sessionDate;
     }
 
-    public void setSessionDate(Date sessionDate) {
+    public void setSessionDate(String sessionDate) {
         this.sessionDate = sessionDate;
     }
 
