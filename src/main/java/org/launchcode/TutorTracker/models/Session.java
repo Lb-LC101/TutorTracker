@@ -16,9 +16,10 @@ public class Session extends AbstractEntity{
 
     //constructors
 
-    public Session(String sessionDate, String sessionNote){
+    public Session(String sessionDate, String sessionNote, Student student){
         this.sessionDate = sessionDate;
         this.sessionNote = sessionNote;
+        this.student = student;
     }
 
     public Session() {

@@ -3,6 +3,7 @@ package org.launchcode.TutorTracker.controllers;
 import org.launchcode.TutorTracker.data.SessionRepository;
 import org.launchcode.TutorTracker.data.StudentRepository;
 import org.launchcode.TutorTracker.models.Session;
+import org.launchcode.TutorTracker.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -36,20 +38,33 @@ public class SessionController {
     public String displayCreateSessionForm(Model model) {
         model.addAttribute("title", "Create Session Profile");
         model.addAttribute(new Session());
+
+        model.addAttribute("students", studentRepository.findAll());
+
         // session/create is the file path in the project structure
         return "session/create";
     }
 
     @PostMapping("create")
     public String processCreateSessionForm(@ModelAttribute @Valid Session newSession,
-                                           Errors errors, Model model) {
+                                           Errors errors, Model model, @RequestParam int studentId) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Session Profile");
+            model.addAttribute("students", studentRepository.findAll());
             //model.addAttribute(new Session());
             // session/create is the file path in the project structure
             return "session/create";
         }
+
+        //add employer selected from drop-down menu to the new job.  If there is no employer in the employer repository, create a new employer.
+        Student selectedStudent = studentRepository.findById(studentId).orElse(new Student());
+        newSession.setStudent(selectedStudent);
+
+
+
+
+
 
         sessionRepository.save(newSession);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
