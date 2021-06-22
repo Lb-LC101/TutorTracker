@@ -92,7 +92,7 @@ public class MeetingController {
         meeting.setStudent(selectedStudent);
 
         meetingRepository.save(meeting);
-        return "redirect:/meeting";
+        return "redirect:/";
     }
 
 

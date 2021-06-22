@@ -20,6 +20,26 @@ public class Book extends AbstractEntity {
     @Size(min=1, message = "Book description is required")
     private String bookDescription;
 
+    @NotBlank
+    @NotNull
+    @Size(min=1, message = "Lesson name is required")
+    private String lessonName;
+
+    @NotBlank
+    @NotNull
+    @Size(min=1, message = "Lesson description is required")
+    private String lessonDescription;
+
+    @NotBlank
+    @NotNull
+    @Size(min=1, message = "Procedure name is required")
+    private String procedureName;
+
+    @NotBlank
+    @NotNull
+    @Size(min=1, message = "Procedure description is required")
+    private String procedureDescription;
+
     //constructors
     public Book(String bookName, String bookDescription){
         this.bookName = bookName;
@@ -45,5 +65,37 @@ public class Book extends AbstractEntity {
 
     public void setBookDescription(String bookDescription) {
         this.bookDescription = bookDescription;
+    }
+
+    public String getLessonName() {
+        return lessonName;
+    }
+
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
+    }
+
+    public String getLessonDescription() {
+        return lessonDescription;
+    }
+
+    public void setLessonDescription(String lessonDescription) {
+        this.lessonDescription = lessonDescription;
+    }
+
+    public String getProcedureName() {
+        return procedureName;
+    }
+
+    public void setProcedureName(String procedureName) {
+        this.procedureName = procedureName;
+    }
+
+    public String getProcedureDescription() {
+        return procedureDescription;
+    }
+
+    public void setProcedureDescription(String procedureDescription) {
+        this.procedureDescription = procedureDescription;
     }
 }

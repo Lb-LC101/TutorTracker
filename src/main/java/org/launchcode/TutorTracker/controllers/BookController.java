@@ -62,16 +62,24 @@ public class BookController {
                 Book book = result.get();
                 model.addAttribute("title", "Edit Book Name" + book.getBookName());
                 model.addAttribute("title", "Edit Book Description" + book.getBookDescription());
+                model.addAttribute("title", "Edit Book Name" + book.getLessonName());
+                model.addAttribute("title", "Edit Book Description" + book.getLessonDescription());
+                model.addAttribute("title", "Edit Book Name" + book.getProcedureName());
+                model.addAttribute("title", "Edit Book Description" + book.getProcedureDescription());
                 model.addAttribute("book", book);
             }
             return "book/edit";
         }
 
         @PostMapping("edit")
-        public String processEditStudentForm(int bookId, String bookName, String bookDescription) {
+        public String processEditStudentForm(int bookId, String bookName, String bookDescription, String lessonName, String lessonDescription, String procedureName, String procedureDescription) {
             Book book = bookRepository.findById(bookId).get();
             book.setBookName(bookName);
             book.setBookDescription(bookDescription);
+            book.setLessonName(lessonName);
+            book.setLessonDescription(lessonDescription);
+            book.setProcedureName(procedureName);
+            book.setProcedureDescription(procedureDescription);
             bookRepository.save(book);
             return "redirect:/books";
         }

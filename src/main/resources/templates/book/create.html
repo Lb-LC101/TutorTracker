@@ -18,6 +18,28 @@
         </label>
         <span th:errors="${book.bookDescription}" class="error"></span>
     </div>
+    <label>Lesson Name
+        <input th:field="${book.lessonName}" th:value="${book.lessonName}" class="form-control">
+    </label>
+    <span th:errors="${book.lessonName}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Lesson Description
+            <textarea th:field="${book.lessonDescription}" th:value="${book.lessonDescription}" class="form-control"></textarea>
+        </label>
+        <span th:errors="${book.lessonDescription}" class="error"></span>
+    </div>
+    <label>Procedure Name
+        <input th:field="${book.procedureName}" th:value="${book.procedureName}" class="form-control">
+    </label>
+    <span th:errors="${book.procedureName}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Procedure Description
+            <textarea th:field="${book.procedureDescription}" th:value="${book.procedureDescription}" class="form-control"></textarea>
+        </label>
+        <span th:errors="${book.procedureDescription}" class="error"></span>
+    </div>
     <input type="submit" value="Create Book Profile" class="btn btn-primary">
 </form>
 </body>

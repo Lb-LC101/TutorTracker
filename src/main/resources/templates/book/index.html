@@ -14,11 +14,19 @@
                 <tr>
                     <th>Book Name</th>
                     <th>Book Description</th>
+                    <th>Lesson Name</th>
+                    <th>Lesson Description</th>
+                    <th>Procedure Name</th>
+                    <th>Procedure Description</th>
                 </tr>
                 </thead>
                 <tr th:each="book : ${books}">
                     <td><a th:text="${book.BookName}"></a></td>
                     <td><a th:text="${book.BookDescription}"></a></td>
+                    <td><a th:text="${book.LessonName}"></a></td>
+                    <td><a th:text="${book.LessonDescription}"></a></td>
+                    <td><a th:text="${book.ProcedureName}"></a></td>
+                    <td><a th:text="${book.ProcedureDescription}"></a></td>
                     <td><a th:text="Edit" th:value = "${book.id}" th:href="'books/edit/' + ${book.id}"></a></td>
                 </tr>
             </table>
