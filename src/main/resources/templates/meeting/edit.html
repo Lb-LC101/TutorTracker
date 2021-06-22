@@ -9,14 +9,27 @@
         <form method="post" th:action="@{/meetings/edit}">
             <input type="hidden" th:value="${meeting.id}" name="meetingId">
             <div class="form-group">
-                <label>Meeting Date
-                    <input th:field="${meeting.meetingDate}" required class="form-control">
-                </label>
-                <span th:errors="${meeting.meetingDate}" class="error"></span>
+                    <label>Meeting Date
+                        <input type="date" th:field="${meeting.meetingDate}" th:value="${meeting.meetingDate}" required class="form-control">
+                    </label>
+                    <span th:errors="${meeting.meetingDate}" class="error"></span>
             </div>
-            <label>Meeting Note
-                <input th:field="${meeting.meetingNote}" required class="form-control">
-            </label>
+
+            <div class="form-group">
+                <label>Meeting Note
+                    <textarea th:field="${meeting.meetingNote}" th:value="${meeting.meetingNote}" class="form-control"></textarea>
+                </label>
+                <span th:errors="${meeting.meetingNote}" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label th:for="student">Student</label>
+                <select name="studentId">
+                    <option value="meeting.student.studentId" selected th:each="student : ${students}"
+                            th:text="${student.firstName}+' '+${student.lastName}"
+                            th:value="${student.id}"></option>
+                </select>
+            </div>
             <span th:errors="${meeting.meetingNote}" class="error"></span>
             <input type="submit" value="Edit Complete" class="btn btn-primary">
         </form>

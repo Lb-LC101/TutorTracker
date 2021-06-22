@@ -12,13 +12,15 @@
             <table class="table table-striped" th:if="${meetings} and ${meetings.size()} > 0">
                 <thead>
                 <tr>
-                    <th>meeting Date</th>
-                    <th>meeting Note</th>
+                    <th>Meeting Date</th>
+                    <th>Meeting Note</th>
+                    <th>Student</th>
                 </tr>
                 </thead>
                 <tr th:each="meeting : ${meetings}">
                     <td><a th:text="${meeting.meetingDate}"></a></td>
                     <td><a th:text="${meeting.meetingNote}"></a></td>
+
                     <td><a th:text="Edit" th:value = "${meeting.id}" th:href="'meetings/edit/' + ${meeting.id}"></a></td>
                 </tr>
             </table>

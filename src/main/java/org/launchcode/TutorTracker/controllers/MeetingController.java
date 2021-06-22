@@ -75,16 +75,22 @@ public class MeetingController {
             Meeting meeting = result.get();
             model.addAttribute("title", "Edit Meeting Date" + meeting.getMeetingDate());
             model.addAttribute("title", "Edit Meeting Note" + meeting.getMeetingNote());
+            model.addAttribute("students", studentRepository.findAll());
             model.addAttribute("meeting", meeting);
         }
         return "meeting/edit";
     }
 
     @PostMapping("edit")
-    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote) {
+    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, Model model) {
         Meeting meeting = meetingRepository.findById(meetingId).get();
         meeting.setMeetingDate(meetingDate);
         meeting.setMeetingNote(meetingNote);
+
+        //add student selected from drop-down menu to the new meeting.  If there is no student in the student repository, create a new student.
+        Student selectedStudent = studentRepository.findById(studentId).orElse(new Student());
+        meeting.setStudent(selectedStudent);
+
         meetingRepository.save(meeting);
         return "redirect:/meeting";
     }
