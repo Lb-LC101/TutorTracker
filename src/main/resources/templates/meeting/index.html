@@ -20,6 +20,7 @@
                 <tr th:each="meeting : ${meetings}">
                     <td><a th:text="${meeting.meetingDate}"></a></td>
                     <td><a th:text="${meeting.meetingNote}"></a></td>
+                    <td><a th:text="${meeting.student.firstName}+' '+${meeting.student.lastName}"></a></td>
 
                     <td><a th:text="Edit" th:value = "${meeting.id}" th:href="'meetings/edit/' + ${meeting.id}"></a></td>
                 </tr>
