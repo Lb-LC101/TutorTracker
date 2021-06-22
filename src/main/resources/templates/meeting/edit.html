@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid">
+        <form method="post" th:action="@{/meetings/edit}">
+            <input type="hidden" th:value="${meeting.id}" name="meetingId">
+            <div class="form-group">
+                <label>Meeting Date
+                    <input th:field="${meeting.meetingDate}" required class="form-control">
+                </label>
+                <span th:errors="${meeting.meetingDate}" class="error"></span>
+            </div>
+            <label>Meeting Note
+                <input th:field="${meeting.meetingNote}" required class="form-control">
+            </label>
+            <span th:errors="${meeting.meetingNote}" class="error"></span>
+            <input type="submit" value="Edit Complete" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>

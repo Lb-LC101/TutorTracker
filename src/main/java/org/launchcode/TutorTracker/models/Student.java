@@ -24,7 +24,7 @@ public class Student extends AbstractEntity {
     private String lastName;
 
     @OneToMany (mappedBy = "student")
-    private final List<Session> sessions = new ArrayList<>();
+    private final List<Meeting> meetings = new ArrayList<>();
 
     //constructors
     public Student(String firstName, String lastName){
@@ -53,7 +53,7 @@ public class Student extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public List<Session> getSessions() {
-        return sessions;
+    public List<Meeting> getMeetings() {
+        return meetings;
     }
 }

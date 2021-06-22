@@ -7,16 +7,16 @@
 <body>
 <form method="post">
     <div class="form-group">
-        <label>Session Date
-            <input type="date" th:field="${session.sessionDate}" th:value="${session.sessionDate}" class="form-control">
+        <label>Meeting Date
+            <input type="date" th:field="${meeting.meetingDate}" th:value="${meeting.meetingDate}" class="form-control">
         </label>
-        <span th:errors="${session.sessionDate}" class="error"></span>
+        <span th:errors="${meeting.meetingDate}" class="error"></span>
     </div>
     <div class="form-group">
-        <label>Session Note
-            <textarea th:field="${session.sessionNote}" th:value="${session.sessionNote}" class="form-control"></textarea>
+        <label>Meeting Note
+            <textarea th:field="${meeting.meetingNote}" th:value="${meeting.meetingNote}" class="form-control"></textarea>
         </label>
-        <span th:errors="${session.sessionNote}" class="error"></span>
+        <span th:errors="${meeting.meetingNote}" class="error"></span>
     </div>
 
     <div class="form-group">
@@ -28,7 +28,7 @@
         </select>
     </div>
 
-    <input type="submit" value="Create Session" class="btn btn-primary">
+    <input type="submit" value="Create meeting" class="btn btn-primary">
 </form>
 </body>
 </html>
