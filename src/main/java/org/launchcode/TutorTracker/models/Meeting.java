@@ -1,8 +1,11 @@
 package org.launchcode.TutorTracker.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Meeting extends AbstractEntity{
@@ -14,17 +17,35 @@ public class Meeting extends AbstractEntity{
     @ManyToOne
     private Student student;
 
+    @ManyToMany
+    private List<Book> books = new ArrayList<>();
+
     //constructors
 
-    public Meeting(String meetingDate, String meetingNote, Student student){
+    public Meeting(String meetingDate, String meetingNote, Student student, List<Book> books){
         this.meetingDate = meetingDate;
         this.meetingNote = meetingNote;
         this.student = student;
+        this.books = books;
     }
 
     public Meeting() {
     }
 
+
+    //methods
+
+    public void removeBook(Book book) {
+        this.books.remove(book);
+    }
+
+    public void removeAllBooks(List<Book> books) {
+        this.books.removeAll(books);
+    }
+
+    public void addBooks(List<Book> books) {
+        this.books.addAll(books);
+    }
     //getters and setters
 
     public String getMeetingDate() {
@@ -49,5 +70,13 @@ public class Meeting extends AbstractEntity{
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

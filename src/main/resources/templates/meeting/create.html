@@ -28,6 +28,21 @@
         </select>
     </div>
 
+    <div class="form-group">
+        <label class="font-weight-bold" th:for="books">Books: </label>
+            <div>
+                <th:block th:each="book : ${books}">
+                    <label class="checkboxes">
+							<input type="checkbox" name="books" th:value="${book.id}"></span>
+                        <span th:text="${book.bookName}+' '+${book.lessonName}+' '+${book.procedureName}"></span>
+                    </label>
+                </th:block>
+            </div>
+    </div>
+
+
+
+
     <input type="submit" value="Create meeting" class="btn btn-primary">
 </form>
 </body>

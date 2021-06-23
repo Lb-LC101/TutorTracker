@@ -1,7 +1,9 @@
 package org.launchcode.TutorTracker.controllers;
 
+import org.launchcode.TutorTracker.data.BookRepository;
 import org.launchcode.TutorTracker.data.MeetingRepository;
 import org.launchcode.TutorTracker.data.StudentRepository;
+import org.launchcode.TutorTracker.models.Book;
 import org.launchcode.TutorTracker.models.Meeting;
 import org.launchcode.TutorTracker.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,6 +25,9 @@ public class MeetingController {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @GetMapping
     public String displayAllMeetings(Model model) {
@@ -38,6 +44,7 @@ public class MeetingController {
         model.addAttribute(new Meeting());
 
         model.addAttribute("students", studentRepository.findAll());
+        model.addAttribute("books", bookRepository.findAll());
 
         // meeting/create is the file path in the project structure
         return "meeting/create";
@@ -45,12 +52,12 @@ public class MeetingController {
 
     @PostMapping("create")
     public String processCreateMeetingForm(@ModelAttribute @Valid Meeting newMeeting,
-                                           Errors errors, Model model, @RequestParam int studentId) {
+                                           Errors errors, Model model, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Meeting Profile");
             model.addAttribute("students", studentRepository.findAll());
-            //model.addAttribute(new Meeting());
+            model.addAttribute("books", bookRepository.findAll());
             // meeting/create is the file path in the project structure
             return "meeting/create";
         }
@@ -58,6 +65,9 @@ public class MeetingController {
         //add student selected from drop-down menu to the new meeting.  If there is no student in the student repository, create a new student.
         Student selectedStudent = studentRepository.findById(studentId).orElse(new Student());
         newMeeting.setStudent(selectedStudent);
+        //add book lesson procedures from checkboxes to the new meeting.
+        List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
+        newMeeting.addBooks(selectedBook);
 
         meetingRepository.save(newMeeting);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
@@ -76,20 +86,30 @@ public class MeetingController {
             model.addAttribute("title", "Edit Meeting Date" + meeting.getMeetingDate());
             model.addAttribute("title", "Edit Meeting Note" + meeting.getMeetingNote());
             model.addAttribute("students", studentRepository.findAll());
+            model.addAttribute("books", bookRepository.findAll());
             model.addAttribute("meeting", meeting);
         }
         return "meeting/edit";
     }
 
     @PostMapping("edit")
-    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, Model model) {
+    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books, Model model) {
         Meeting meeting = meetingRepository.findById(meetingId).get();
         meeting.setMeetingDate(meetingDate);
         meeting.setMeetingNote(meetingNote);
 
-        //add student selected from drop-down menu to the new meeting.  If there is no student in the student repository, create a new student.
+        //add student selected from drop-down menu to the meeting.  If there is no student in the student repository, create a new student.
         Student selectedStudent = studentRepository.findById(studentId).orElse(new Student());
         meeting.setStudent(selectedStudent);
+
+        //update books selected
+        if (books == null) {
+            meeting.removeAllBooks(meeting.getBooks());
+        } else {
+            List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
+            meeting.removeAllBooks(meeting.getBooks());
+            meeting.addBooks(selectedBook);
+        }
 
         meetingRepository.save(meeting);
         return "redirect:/";

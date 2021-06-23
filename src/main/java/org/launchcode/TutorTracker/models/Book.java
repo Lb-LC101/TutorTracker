@@ -44,6 +44,10 @@ public class Book extends AbstractEntity {
     public Book(String bookName, String bookDescription){
         this.bookName = bookName;
         this.bookDescription = bookDescription;
+        this.lessonName = lessonName;
+        this.lessonDescription = lessonDescription;
+        this.procedureName = procedureName;
+        this.procedureDescription = procedureDescription;
     }
 
     public Book() {

@@ -34,6 +34,21 @@
                     </option>
                 </select>
 
+                <div class="form-group">
+                    <label class="font-weight-bold" th:for="books">Books: </label>
+                    <div>
+                        <th:block th:each="book : ${books}">
+                            <label class="checkboxes">
+							<span th:if="${meeting.books.contains(book)}">
+								<input type="checkbox" name="books" th:checked="${meeting.books}" th:value="${book.id}" ></span>
+                                <span th:unless="${meeting.books.contains(book)}">
+								<input type="checkbox" name="books" th:value="${book.id}"></span>
+                                <span th:text="${book.bookName}+' '+${book.lessonName}+' '+${book.procedureName}"></span>
+                            </label>
+                        </th:block>
+                    </div>
+                </div>
+
             </div>
             <span th:errors="${meeting.meetingNote}" class="error"></span>
             <input type="submit" value="Edit Complete" class="btn btn-primary">

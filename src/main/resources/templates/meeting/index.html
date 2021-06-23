@@ -8,19 +8,27 @@
     <form th:action="@{'../home'}">
         <div class="container-fluid">
             <h2 th:unless="${meetings} and ${meetings.size()}">No Meetings Exist
-                <a th:href="@{/meetings/create}">create a Meeting</a></h2>
+                <a th:href="@{/meetings/create}">Create a Meeting</a></h2>
             <table class="table table-striped" th:if="${meetings} and ${meetings.size()} > 0">
                 <thead>
                 <tr>
                     <th>Meeting Date</th>
                     <th>Meeting Note</th>
                     <th>Student</th>
+                    <th>Activities</th>
                 </tr>
                 </thead>
                 <tr th:each="meeting : ${meetings}">
                     <td><a th:text="${meeting.meetingDate}"></a></td>
                     <td><a th:text="${meeting.meetingNote}"></a></td>
                     <td><a th:text="${meeting.student.firstName}+' '+${meeting.student.lastName}"></a></td>
+
+                    <td>
+                       <th:block th:if="${meeting.books.size() > 0}" th:each="book : ${meeting.books}">
+                           <p th:text="${book.bookName}+' '+${book.lessonName}+' '+${book.procedureName}"></p>
+                       </th:block>
+
+                   </td>
 
                     <td><a th:text="Edit" th:value = "${meeting.id}" th:href="'meetings/edit/' + ${meeting.id}"></a></td>
                 </tr>
