@@ -1,9 +1,12 @@
 package org.launchcode.TutorTracker.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -40,15 +43,20 @@ public class Book extends AbstractEntity {
     @Size(min=1, message = "Procedure description is required")
     private String procedureDescription;
 
+    @ManyToMany(mappedBy = "books")
+    private final List<Meeting> meetings = new ArrayList<>();
+
     //constructors
-    public Book(String bookName, String bookDescription){
-        this.bookName = bookName;
-        this.bookDescription = bookDescription;
-        this.lessonName = lessonName;
-        this.lessonDescription = lessonDescription;
-        this.procedureName = procedureName;
-        this.procedureDescription = procedureDescription;
-    }
+
+    //This part apparently is unnecessary - delete later
+//    public Book(String bookName, String bookDescription){
+//        this.bookName = bookName;
+//        this.bookDescription = bookDescription;
+//        this.lessonName = lessonName;
+//        this.lessonDescription = lessonDescription;
+//        this.procedureName = procedureName;
+//        this.procedureDescription = procedureDescription;
+//    }
 
     public Book() {
     }

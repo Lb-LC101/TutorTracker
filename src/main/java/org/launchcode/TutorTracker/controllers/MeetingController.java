@@ -67,7 +67,7 @@ public class MeetingController {
         newMeeting.setStudent(selectedStudent);
         //add book lesson procedures from checkboxes to the new meeting.
         List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
-        newMeeting.addBooks(selectedBook);
+       // newMeeting.addBooks(selectedBook);
 
         meetingRepository.save(newMeeting);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
