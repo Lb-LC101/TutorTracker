@@ -48,17 +48,7 @@ public class Book extends AbstractEntity {
 
     //constructors
 
-    //This part apparently is unnecessary - delete later
-//    public Book(String bookName, String bookDescription){
-//        this.bookName = bookName;
-//        this.bookDescription = bookDescription;
-//        this.lessonName = lessonName;
-//        this.lessonDescription = lessonDescription;
-//        this.procedureName = procedureName;
-//        this.procedureDescription = procedureDescription;
-//    }
-
-    public Book() {
+     public Book() {
     }
 
     //getters and setters

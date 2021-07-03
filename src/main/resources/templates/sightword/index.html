@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<form th:action="@{'../home'}">
+    <div class="container-fluid">
+        <h2 th:unless="${sightwords} and ${sightwords.size()}">No Sightword Profiles Exist
+            <a th:href="@{/sightwords/create}">create a Sightword Profile</a></h2>
+        <table class="table table-striped" th:if="${sightwords} and ${sightwords.size()} > 0">
+            <thead>
+            <tr>
+                <th>Sight Word</th>
+
+            </tr>
+            </thead>
+            <tr th:each="sightword : ${sightwords}">
+                <td><a th:text="${sightword.Word}"></a></td>
+
+                <td><a th:text="Edit" th:value = "${sightword.id}" th:href="'sightwords/edit/' + ${sightword.id}"></a></td>
+            </tr>
+        </table>
+        <input type="submit" value="Return to main menu" class="btn btn-primary">
+    </div>
+</form>
+</body>
+</html>

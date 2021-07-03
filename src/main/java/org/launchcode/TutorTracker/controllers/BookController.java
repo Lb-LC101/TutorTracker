@@ -72,7 +72,7 @@ public class BookController {
         }
 
         @PostMapping("edit")
-        public String processEditStudentForm(int bookId, String bookName, String bookDescription, String lessonName, String lessonDescription, String procedureName, String procedureDescription) {
+        public String processEditBookForm(int bookId, String bookName, String bookDescription, String lessonName, String lessonDescription, String procedureName, String procedureDescription) {
             Book book = bookRepository.findById(bookId).get();
             book.setBookName(bookName);
             book.setBookDescription(bookDescription);
