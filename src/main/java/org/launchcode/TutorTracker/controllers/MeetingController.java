@@ -2,9 +2,11 @@ package org.launchcode.TutorTracker.controllers;
 
 import org.launchcode.TutorTracker.data.BookRepository;
 import org.launchcode.TutorTracker.data.MeetingRepository;
+import org.launchcode.TutorTracker.data.SightwordRepository;
 import org.launchcode.TutorTracker.data.StudentRepository;
 import org.launchcode.TutorTracker.models.Book;
 import org.launchcode.TutorTracker.models.Meeting;
+import org.launchcode.TutorTracker.models.Sightword;
 import org.launchcode.TutorTracker.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class MeetingController {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private SightwordRepository sightwordRepository;
+
     @GetMapping
     public String displayAllMeetings(Model model) {
         model.addAttribute("title", "All Meetings");
@@ -45,6 +50,7 @@ public class MeetingController {
 
         model.addAttribute("students", studentRepository.findAll());
         model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("sightwords", sightwordRepository.findAll());
 
         // meeting/create is the file path in the project structure
         return "meeting/create";
@@ -52,12 +58,13 @@ public class MeetingController {
 
     @PostMapping("create")
     public String processCreateMeetingForm(@ModelAttribute @Valid Meeting newMeeting,
-                                           Errors errors, Model model, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books) {
+                                           Errors errors, Model model, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books, @RequestParam(required = false) List<Integer> sightwords) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Meeting Profile");
             model.addAttribute("students", studentRepository.findAll());
             model.addAttribute("books", bookRepository.findAll());
+            model.addAttribute("sightwords", sightwordRepository.findAll());
             // meeting/create is the file path in the project structure
             return "meeting/create";
         }
@@ -68,6 +75,8 @@ public class MeetingController {
         //add book lesson procedures from checkboxes to the new meeting.
         List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
        // newMeeting.addBooks(selectedBook);
+        //add sightwords from checkboxes to the new meeting.
+        List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
 
         meetingRepository.save(newMeeting);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
@@ -87,13 +96,14 @@ public class MeetingController {
             model.addAttribute("title", "Edit Meeting Note" + meeting.getMeetingNote());
             model.addAttribute("students", studentRepository.findAll());
             model.addAttribute("books", bookRepository.findAll());
+            model.addAttribute("sightwords", sightwordRepository.findAll());
             model.addAttribute("meeting", meeting);
         }
         return "meeting/edit";
     }
 
     @PostMapping("edit")
-    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books, Model model) {
+    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books,  @RequestParam(required = false) List<Integer> sightwords, Model model) {
         Meeting meeting = meetingRepository.findById(meetingId).get();
         meeting.setMeetingDate(meetingDate);
         meeting.setMeetingNote(meetingNote);
@@ -109,6 +119,14 @@ public class MeetingController {
             List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
             meeting.removeAllBooks(meeting.getBooks());
             meeting.addBooks(selectedBook);
+        }
+        //update sightwords selected
+        if (sightwords == null) {
+            meeting.removeAllSightwords(meeting.getSightwords());
+        } else {
+            List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
+            meeting.removeAllSightwords(meeting.getSightwords());
+            meeting.addSightwords(selectedSightword);
         }
 
         meetingRepository.save(meeting);

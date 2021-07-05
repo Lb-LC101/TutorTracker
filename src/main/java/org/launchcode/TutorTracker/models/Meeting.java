@@ -20,13 +20,17 @@ public class Meeting extends AbstractEntity{
     @ManyToMany
     private List<Book> books = new ArrayList<>();
 
+    @ManyToMany
+    private List<Sightword> sightwords = new ArrayList<>();
+
     //constructors
 
-    public Meeting(String meetingDate, String meetingNote, Student student, List<Book> books){
+    public Meeting(String meetingDate, String meetingNote, Student student, List<Book> books, List<Sightword> sightwords){
         this.meetingDate = meetingDate;
         this.meetingNote = meetingNote;
         this.student = student;
         this.books = books;
+        this.sightwords = sightwords;
     }
 
     public Meeting() {
@@ -45,6 +49,15 @@ public class Meeting extends AbstractEntity{
 
     public void addBooks(List<Book> books) {
         this.books.addAll(books);
+    }
+
+
+    public void removeAllSightwords(List<Sightword> sightwords) {
+        this.sightwords.removeAll(sightwords);
+    }
+
+    public void addSightwords(List<Sightword> sightwords) {
+        this.sightwords.addAll(sightwords);
     }
     //getters and setters
 
@@ -78,5 +91,13 @@ public class Meeting extends AbstractEntity{
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public List<Sightword> getSightwords() {
+        return sightwords;
+    }
+
+    public void setSightwords(List<Sightword> sightwords) {
+        this.sightwords = sightwords;
     }
 }

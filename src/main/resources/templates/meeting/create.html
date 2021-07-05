@@ -39,6 +39,19 @@
                 </th:block>
             </div>
     </div>
+
+    <div class="form-group">
+        <label class="font-weight-bold" th:for="sightwords">Sight Words: </label>
+        <div>
+            <th:block th:each="sightword : ${sightwords}">
+                <label class="checkboxes">
+                    <input type="checkbox" name="sightwords" th:value="${sightword.id}"></span>
+                    <span th:text="${sightword.word}"></span>
+                </label>
+            </th:block>
+        </div>
+    </div>
+
     <input type="submit" value="Create meeting" class="btn btn-primary">
 </form>
 </body>
