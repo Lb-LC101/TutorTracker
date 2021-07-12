@@ -20,10 +20,13 @@ public class Meeting extends AbstractEntity{
     @ManyToMany
     private List<Book> books = new ArrayList<>();
 
-    @ManyToMany
+    //@ManyToMany
+    @ManyToMany(mappedBy = "meetings")
     private List<Sightword> sightwords = new ArrayList<>();
 
-    @ManyToMany List<Sightword> spellwords = new ArrayList<>();
+    //@ManyToMany
+    @ManyToMany(mappedBy = "meetings")
+    private List<Sightword> spellwords = new ArrayList<>();
 
     //constructors
 

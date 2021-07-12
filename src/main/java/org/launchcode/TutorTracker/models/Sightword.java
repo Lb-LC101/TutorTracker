@@ -17,8 +17,10 @@ public class Sightword extends AbstractEntity {
     @Size(min=1, message = "Word is required")
     private String word;
 
-    @ManyToMany(mappedBy = "sightwords")
+  //  @ManyToMany(mappedBy = "sightwords")
+    @ManyToMany
     private final List<Meeting> meetings = new ArrayList<>();
+
 
     //constructors
 
@@ -37,5 +39,9 @@ public class Sightword extends AbstractEntity {
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    public List<Meeting> getMeetings() {
+        return meetings;
     }
 }
