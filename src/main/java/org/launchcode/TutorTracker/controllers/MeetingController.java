@@ -51,6 +51,7 @@ public class MeetingController {
         model.addAttribute("students", studentRepository.findAll());
         model.addAttribute("books", bookRepository.findAll());
         model.addAttribute("sightwords", sightwordRepository.findAll());
+        model.addAttribute("spellwords", sightwordRepository.findAll());
 
         // meeting/create is the file path in the project structure
         return "meeting/create";
@@ -58,13 +59,14 @@ public class MeetingController {
 
     @PostMapping("create")
     public String processCreateMeetingForm(@ModelAttribute @Valid Meeting newMeeting,
-                                           Errors errors, Model model, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books, @RequestParam(required = false) List<Integer> sightwords) {
+                                           Errors errors, Model model, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books, @RequestParam(required = false) List<Integer> sightwords, @RequestParam(required = false) List<Integer> spellwords ) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Meeting Profile");
             model.addAttribute("students", studentRepository.findAll());
             model.addAttribute("books", bookRepository.findAll());
             model.addAttribute("sightwords", sightwordRepository.findAll());
+            model.addAttribute("spelltwords", sightwordRepository.findAll());
             // meeting/create is the file path in the project structure
             return "meeting/create";
         }
@@ -77,6 +79,7 @@ public class MeetingController {
        // newMeeting.addBooks(selectedBook);
         //add sightwords from checkboxes to the new meeting.
         List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
+        List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
 
         meetingRepository.save(newMeeting);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
