@@ -55,10 +55,10 @@
     <div class="form-group">
         <label class="font-weight-bold" th:for="spellwords">Spelling Words: </label>
         <div>
-            <th:block th:each="sightword : ${sightwords}">
+            <th:block th:each="spellword : ${spellwords}">
                 <label class="checkboxes">
-                    <input type="checkbox" name="sightwords" th:value="${sightword.id}"></span>
-                    <span th:text="${sightword.word}"></span>
+                    <input type="checkbox" name="spellwords" th:value="${spellword.id}"></span>
+                    <span th:text="${spellword.word}"></span>
                 </label>
             </th:block>
         </div>

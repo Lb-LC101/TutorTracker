@@ -66,7 +66,7 @@ public class MeetingController {
             model.addAttribute("students", studentRepository.findAll());
             model.addAttribute("books", bookRepository.findAll());
             model.addAttribute("sightwords", sightwordRepository.findAll());
-            model.addAttribute("spelltwords", sightwordRepository.findAll());
+            model.addAttribute("spellwords", sightwordRepository.findAll());
             // meeting/create is the file path in the project structure
             return "meeting/create";
         }
