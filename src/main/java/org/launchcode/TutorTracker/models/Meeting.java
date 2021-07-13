@@ -24,7 +24,7 @@ public class Meeting extends AbstractEntity{
   //  @ManyToMany(mappedBy = "meetings")
     private List<Sightword> sightwords = new ArrayList<>();
 
-    //@ManyToMany
+    //@ManyToMany(mappedBy = "meetings")
     @ManyToMany
     private List<Sightword> spellwords = new ArrayList<>();
 
@@ -64,6 +64,14 @@ public class Meeting extends AbstractEntity{
 
     public void addSightwords(List<Sightword> sightwords) {
         this.sightwords.addAll(sightwords);
+    }
+
+    public void removeAllSpellwords(List<Sightword> spellwords) {
+        this.spellwords.removeAll(spellwords);
+    }
+
+    public void addSpellwords(List<Sightword> spellwords) {
+        this.spellwords.addAll(spellwords);
     }
     //getters and setters
 
@@ -107,11 +115,11 @@ public class Meeting extends AbstractEntity{
         this.sightwords = sightwords;
     }
 
-//    public List<Sightword> getSpellwords() {
-//        return spellwords;
-//    }
-//
-//    public void setSpellwords(List<Sightword> spellwords) {
-//        this.spellwords = spellwords;
-//    }
+    public List<Sightword> getSpellwords() {
+        return spellwords;
+    }
+
+    public void setSpellwords(List<Sightword> spellwords) {
+        this.spellwords = spellwords;
+    }
 }

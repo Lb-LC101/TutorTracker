@@ -16,6 +16,8 @@
                     <th>Meeting Note</th>
                     <th>Student</th>
                     <th>Activities</th>
+                    <th>Reading Sightwords</th>
+                    <th>Spelling Sightwords</th>
                 </tr>
                 </thead>
                 <tr th:each="meeting : ${meetings}">
@@ -32,6 +34,12 @@
                     <td>
                         <th:block th:if="${meeting.sightwords.size() > 0}" th:each="sightword : ${meeting.sightwords}">
                             <p th:text="${sightword.word}"></p>
+                        </th:block>
+                    </td>
+
+                    <td>
+                        <th:block th:if="${meeting.spellwords.size() > 0}" th:each="spellword : ${meeting.spellwords}">
+                            <p th:text="${spellword.word}"></p>
                         </th:block>
                     </td>
 

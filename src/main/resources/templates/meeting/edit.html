@@ -64,6 +64,21 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="font-weight-bold" th:for="spellwords">Spelling Words: </label>
+                    <div>
+                        <th:block th:each="spellword : ${spellwords}">
+                            <label class="checkboxes">
+							<span th:if="${meeting.spellwords.contains(spellword)}">
+								<input type="checkbox" name="spellwords" th:checked="${meeting.spellwords}" th:value="${spellword.id}" ></span>
+                                <span th:unless="${meeting.spellwords.contains(spellword)}">
+								<input type="checkbox" name="spellwords" th:value="${spellword.id}"></span>
+                                <span th:text="${spellword.word}"></span>
+                            </label>
+                        </th:block>
+                    </div>
+                </div>
+
             </div>
             <span th:errors="${meeting.meetingNote}" class="error"></span>
             <input type="submit" value="Edit Complete" class="btn btn-primary">

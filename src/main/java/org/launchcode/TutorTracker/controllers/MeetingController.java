@@ -60,7 +60,7 @@ public class MeetingController {
     @PostMapping("create")
     public String processCreateMeetingForm(@ModelAttribute @Valid Meeting newMeeting, Errors errors, Model model, @RequestParam int studentId,
                                            @RequestParam(required = false) List<Integer> books, @RequestParam(required = false) List<Integer> sightwords,
-                                           @RequestParam(required = false) List<Integer> spellwords ) {
+                                           @RequestParam(required = false) List<Integer> spellwords) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Meeting Profile");
@@ -102,13 +102,14 @@ public class MeetingController {
             model.addAttribute("students", studentRepository.findAll());
             model.addAttribute("books", bookRepository.findAll());
             model.addAttribute("sightwords", sightwordRepository.findAll());
+            model.addAttribute("spellwords", sightwordRepository.findAll());
             model.addAttribute("meeting", meeting);
         }
         return "meeting/edit";
     }
 
     @PostMapping("edit")
-    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books,  @RequestParam(required = false) List<Integer> sightwords, Model model) {
+    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books,  @RequestParam(required = false) List<Integer> sightwords, @RequestParam(required = false) List<Integer> spellwords, Model model) {
         Meeting meeting = meetingRepository.findById(meetingId).get();
         meeting.setMeetingDate(meetingDate);
         meeting.setMeetingNote(meetingNote);
@@ -132,6 +133,14 @@ public class MeetingController {
             List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
             meeting.removeAllSightwords(meeting.getSightwords());
             meeting.addSightwords(selectedSightword);
+        }
+        //update spellwords selected
+        if (spellwords == null) {
+            meeting.removeAllSpellwords(meeting.getSpellwords());
+        } else {
+            List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
+            meeting.removeAllSpellwords(meeting.getSpellwords());
+            meeting.addSpellwords(selectedSpellword);
         }
 
         meetingRepository.save(meeting);
