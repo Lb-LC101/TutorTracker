@@ -20,12 +20,12 @@ public class Meeting extends AbstractEntity{
     @ManyToMany
     private List<Book> books = new ArrayList<>();
 
-    //@ManyToMany
-    @ManyToMany(mappedBy = "meetings")
+    @ManyToMany
+  //  @ManyToMany(mappedBy = "meetings")
     private List<Sightword> sightwords = new ArrayList<>();
 
     //@ManyToMany
-    @ManyToMany(mappedBy = "meetings")
+    @ManyToMany
     private List<Sightword> spellwords = new ArrayList<>();
 
     //constructors
@@ -107,11 +107,11 @@ public class Meeting extends AbstractEntity{
         this.sightwords = sightwords;
     }
 
-    public List<Sightword> getSpellwords() {
-        return spellwords;
-    }
-
-    public void setSpellwords(List<Sightword> spellwords) {
-        this.spellwords = spellwords;
-    }
+//    public List<Sightword> getSpellwords() {
+//        return spellwords;
+//    }
+//
+//    public void setSpellwords(List<Sightword> spellwords) {
+//        this.spellwords = spellwords;
+//    }
 }
