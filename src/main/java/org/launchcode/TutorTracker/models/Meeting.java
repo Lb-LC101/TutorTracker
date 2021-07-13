@@ -1,9 +1,6 @@
 package org.launchcode.TutorTracker.models;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +9,8 @@ public class Meeting extends AbstractEntity{
 
     //variables
     private String meetingDate;
+
+    @Column(length = 65535, columnDefinition = "text")
     private String meetingNote;
 
     @ManyToOne

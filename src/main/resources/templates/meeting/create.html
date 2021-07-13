@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
+<div style="background-color: mediumpurple" class="page-holder bg-cover">
+
 <form method="post">
     <div class="form-group">
         <label>Meeting Date
@@ -66,5 +65,6 @@
 
     <input type="submit" value="Create meeting" class="btn btn-primary">
 </form>
+</div>
 </body>
 </html>
