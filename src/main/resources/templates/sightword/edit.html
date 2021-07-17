@@ -3,16 +3,22 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <div class="container-fluid">
-    <form method="post" th:action="@{/readingsightwords/edit}">
-        <input type="hidden" th:value="${readingSightword.id}" name="readingSightwordId">
+    <form method="post" th:action="@{/sightwords/edit}">
+        <input type="hidden" th:value="${sightword.id}" name="sightwordId">
         <div class="form-group">
             <label>Sight Word
-                <input th:field="${readingSightword.word}" required class="form-control">
+                <input th:field="${sightword.word}" required class="form-control">
             </label>
-            <span th:errors="${readingSightword.word}" class="error"></span>
+            <span th:errors="${sightword.word}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label> Level
+                <input th:field="${sightword.level}"required class="form-control">
+            </label>
+            <span th:errors="${sightword.level}" class="error"></span>
         </div>
 
-        <input type="submit" value="Reading Sight Word Edit Complete" class="btn btn-primary">
+        <input type="submit" value="Sight Word Edit Complete" class="btn btn-primary">
     </form>
 </div>
 </body>

@@ -4,19 +4,19 @@
 <body>
 <form th:action="@{'../home'}">
     <div class="container-fluid">
-        <h2 th:unless="${readingSightwords} and ${readingSightwords.size()}">No Reading Sightword Profiles Exist
-            <a th:href="@{/readingsightwords/create}">create a Reading Sightword Profile</a></h2>
-        <table class="table table-striped" th:if="${readingSightwords} and ${readingSightwords.size()} > 0">
+        <h2 th:unless="${sightwords} and ${sightwords.size()}">No Sightword Profiles Exist
+            <a th:href="@{/sightwords/create}">Create a Sightword Profile</a></h2>
+        <table class="table table-striped" th:if="${sightwords} and ${sightwords.size()} > 0">
             <thead>
             <tr>
-                <th>Reading Sight Word</th>
+                <th>Sight Word</th>
 
             </tr>
             </thead>
-            <tr th:each="readingSightword : ${readingSightwords}">
-                <td><a th:text="${readingSightword.Word}"></a></td>
+            <tr th:each="sightword : ${sightwords}">
+                <td><a th:text="${sightword.Word}"></a></td>
 
-                <td><a th:text="Edit" th:value = "${readingSightword.id}" th:href="'readingSightwords/edit/' + ${readingSightword.id}"></a></td>
+                <td><a th:text="Edit" th:value = "${sightword.id}" th:href="'sightwords/edit/' + ${sightword.id}"></a></td>
             </tr>
         </table>
         <input type="submit" value="Return to main menu" class="btn btn-primary">

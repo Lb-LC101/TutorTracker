@@ -66,9 +66,10 @@ public class SightwordController {
     }
 
     @PostMapping("edit")
-    public String processEditSightwordForm(int sightwordId, String word) {
+    public String processEditSightwordForm(int sightwordId, String word, String level) {
         Sightword sightword = sightwordRepository.findById(sightwordId).get();
         sightword.setWord(word);
+        sightword.setLevel(level);
 
         sightwordRepository.save(sightword);
         return "redirect:/sightwords";

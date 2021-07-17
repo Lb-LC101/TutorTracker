@@ -15,6 +15,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,7 +83,6 @@ public class MeetingController {
         //add sightwords from checkboxes to the new meeting.
         List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
         List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
-
 
         meetingRepository.save(newMeeting);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
