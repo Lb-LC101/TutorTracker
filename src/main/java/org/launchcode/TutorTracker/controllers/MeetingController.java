@@ -78,11 +78,19 @@ public class MeetingController {
         Student selectedStudent = studentRepository.findById(studentId).orElse(new Student());
         newMeeting.setStudent(selectedStudent);
         //add book lesson procedures from checkboxes to the new meeting.
-        List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
+        if (books != null) {
+            List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
+        }
        // newMeeting.addBooks(selectedBook);
         //add sightwords from checkboxes to the new meeting.
-        List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
-        List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
+        if ((sightwords != null) && (spellwords != null)) {
+            List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
+            List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
+        } else if ((sightwords != null)) {
+            List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
+        } else if ((spellwords != null)) {
+            List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
+        }
 
         meetingRepository.save(newMeeting);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
