@@ -29,27 +29,36 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row">
             <div class="form-group">
                 <div class="col-md-3">
+                    <h4>
                     <label>Meeting Note
-                        <textarea th:field="${meeting.meetingNote}" th:value="${meeting.meetingNote}" class="form-control"></textarea>
+                        <textarea th:field="${meeting.meetingNote}" th:value="${meeting.meetingNote}" class="form-control" cols="48" rows = "12"></textarea>
                     </label>
                     <span th:errors="${meeting.meetingNote}" class="error"></span>
+                    </h4>
                 </div>
             </div>
 
 
             <div class="form-group">
-                <label th:for="book">Books</label>
-                <select name="books" multiple="multiple" size = "8">
-                    <option th:each="book : ${books}"
-                            th:text="${book.bookName}+' '+${book.lessonName}+' '+${book.procedureName}"
-                            th:value="${book.id}"></option>
-                </select>
+                <div class="col-md-6">
+                    <h4>
+                    <label th:for="book">Books
+                        <div></div>
+                    <select name="books" multiple="multiple" size = "8">
+                        <option th:each="book : ${books}"
+                                th:text="${book.bookName}+' '+${book.lessonName}+' '+${book.procedureName}"
+                                th:value="${book.id}">
+                        </option>
+                    </select>
+                    </label>
+                    </h4>
+                </div>
             </div>
-
-
+            </div>
+            <div class="row">
             <div class="form-group">
                 <label class="font-weight-bold" th:for="sightwords">Sight Words: </label>
                 <div>
@@ -73,8 +82,10 @@
                     </th:block>
                 </div>
             </div>
-
+            </div>
+            <div class="row">
             <input type="submit" value="Create meeting" class="btn btn-primary">
+            </div>
         </form>
     </div>
 
