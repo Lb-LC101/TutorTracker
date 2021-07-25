@@ -30,62 +30,69 @@
                 </div>
             </div>
             <div class="row">
-            <div class="form-group">
-                <div class="col-md-3">
-                    <h4>
-                    <label>Meeting Note
-                        <textarea th:field="${meeting.meetingNote}" th:value="${meeting.meetingNote}" class="form-control" cols="48" rows = "12"></textarea>
-                    </label>
-                    <span th:errors="${meeting.meetingNote}" class="error"></span>
-                    </h4>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="col-md-6">
-                    <h4>
-                    <label th:for="book">Books
-                        <div></div>
-                    <select name="books" multiple="multiple" size = "8">
-                        <option th:each="book : ${books}"
-                                th:text="${book.bookName}+' '+${book.lessonName}+' '+${book.procedureName}"
-                                th:value="${book.id}">
-                        </option>
-                    </select>
-                    </label>
-                    </h4>
-                </div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="form-group">
-                <label class="font-weight-bold" th:for="sightwords">Sight Words: </label>
-                <div>
-                    <th:block th:each="sightword : ${sightwords}">
-                        <label class="checkboxes">
-                            <input type="checkbox" name="sightwords" th:value="${sightword.id}"></span>
-                            <span th:text="${sightword.word}"></span>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <h4>
+                        <label>Meeting Note
+                            <textarea th:field="${meeting.meetingNote}" th:value="${meeting.meetingNote}" class="form-control" cols="48" rows = "12"></textarea>
                         </label>
-                    </th:block>
+                        <span th:errors="${meeting.meetingNote}" class="error"></span>
+                        </h4>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <h4>
+                        <label th:for="book">Books
+                            <div></div>
+                        <select name="books" multiple="multiple" size = "8">
+                            <option th:each="book : ${books}"
+                                    th:text="${book.bookName}+' '+${book.lessonName}+' '+${book.procedureName}"
+                                    th:value="${book.id}">
+                            </option>
+                        </select>
+                        </label>
+                        </h4>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="font-weight-bold" th:for="spellwords">Spelling Words: </label>
-                <div>
-                    <th:block th:each="spellword : ${spellwords}">
-                        <label class="checkboxes">
-                            <input type="checkbox" name="spellwords" th:value="${spellword.id}"></span>
-                            <span th:text="${spellword.word}"></span>
-                        </label>
-                    </th:block>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold" th:for="sightwords">Reading Sight Words: </label>
+                        <div>
+                            <th:block th:each="sightword : ${sightwords}">
+                                <label class="checkboxes">
+                                    <input type="checkbox" name="sightwords" th:value="${sightword.id}"></span>
+                                    <span th:text="${sightword.word}"></span>
+                                </label>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold" th:for="spellwords">Spelling Words: </label>
+                        <div>
+                            <th:block th:each="spellword : ${spellwords}">
+                                <label class="checkboxes">
+                                    <input type="checkbox" name="spellwords" th:value="${spellword.id}"></span>
+                                    <span th:text="${spellword.word}"></span>
+                                </label>
+                            </th:block>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
+
             <div class="row">
-            <input type="submit" value="Create meeting" class="btn btn-primary">
+                 <input type="submit" value="Create" class="btn btn-primary">
             </div>
+
         </form>
     </div>
 

@@ -10,16 +10,22 @@
             <thead>
             <tr>
                 <th>Sight Word</th>
+                <th>Level</th>
+                <th>Lesson</th>
 
             </tr>
             </thead>
             <tr th:each="sightword : ${sightwords}">
                 <td><a th:text="${sightword.Word}"></a></td>
+                <td><a th:text="${sightword.Level}"></a></td>
+                <td><a th:text="${sightword.Lesson}"></a></td>
 
                 <td><a th:text="Edit" th:value = "${sightword.id}" th:href="'sightwords/edit/' + ${sightword.id}"></a></td>
             </tr>
         </table>
         <input type="submit" value="Return to main menu" class="btn btn-primary">
+        <input type="submit" value="Create" th:formaction="@{/sightwords/create}"class="btn btn-primary">
+
     </div>
 </form>
 </body>

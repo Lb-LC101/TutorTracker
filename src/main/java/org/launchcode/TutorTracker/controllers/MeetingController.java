@@ -95,8 +95,7 @@ public class MeetingController {
         return "redirect:/";
     }
 
-
-    //update meeting profile
+      //update meeting profile
     @GetMapping("edit/{meetingId}")
     public String displayEditMeetingForm(@PathVariable int meetingId, Model model) {
         Optional<Meeting> result = meetingRepository.findById(meetingId);
