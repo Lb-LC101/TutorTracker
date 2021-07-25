@@ -15,8 +15,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,7 +79,7 @@ public class MeetingController {
         if (books != null) {
             List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
         }
-       // newMeeting.addBooks(selectedBook);
+        // newMeeting.addBooks(selectedBook);
         //add sightwords from checkboxes to the new meeting.
         if ((sightwords != null) && (spellwords != null)) {
             List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
@@ -118,7 +116,7 @@ public class MeetingController {
     }
 
     @PostMapping("edit")
-    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books,  @RequestParam(required = false) List<Integer> sightwords, @RequestParam(required = false) List<Integer> spellwords, Model model) {
+    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books, @RequestParam(required = false) List<Integer> sightwords, @RequestParam(required = false) List<Integer> spellwords, Model model) {
         Meeting meeting = meetingRepository.findById(meetingId).get();
         meeting.setMeetingDate(meetingDate);
         meeting.setMeetingNote(meetingNote);
@@ -155,7 +153,6 @@ public class MeetingController {
         meetingRepository.save(meeting);
         return "redirect:/";
     }
-
 
 
 }

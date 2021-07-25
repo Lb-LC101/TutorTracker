@@ -15,41 +15,41 @@ import java.util.Optional;
 @RequestMapping("students")
 public class StudentController {
 
-        @Autowired
-        private StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
-        @GetMapping
-        public String displayAllStudents(Model model) {
-            model.addAttribute("title", "All Students");
-            model.addAttribute("students", studentRepository.findAll());
-            // student/index is the file path in the project structure
-            return "student/index";
-        }
+    @GetMapping
+    public String displayAllStudents(Model model) {
+        model.addAttribute("title", "All Students");
+        model.addAttribute("students", studentRepository.findAll());
+        // student/index is the file path in the project structure
+        return "student/index";
+    }
 
-        // create is the URL path students/create
-        @GetMapping("create")
-        public String displayCreateStudentForm(Model model) {
+    // create is the URL path students/create
+    @GetMapping("create")
+    public String displayCreateStudentForm(Model model) {
+        model.addAttribute("title", "Create Student Profile");
+        model.addAttribute(new Student());
+        // student/create is the file path in the project structure
+        return "student/create";
+    }
+
+    @PostMapping("create")
+    public String processCreateStudentForm(@Valid @ModelAttribute Student student,
+                                           Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Create Student Profile");
             model.addAttribute(new Student());
             // student/create is the file path in the project structure
             return "student/create";
         }
 
-        @PostMapping("create")
-        public String processCreateStudentForm(@Valid @ModelAttribute Student student,
-                                                Errors errors, Model model) {
-
-            if (errors.hasErrors()) {
-                model.addAttribute("title", "Create Student Profile");
-                model.addAttribute(new Student());
-                // student/create is the file path in the project structure
-                return "student/create";
-            }
-
-            studentRepository.save(student);
-            // redirect: is the URL path from RequestMapping (The main mapping from the controller)
-            return "redirect:/students";
-        }
+        studentRepository.save(student);
+        // redirect: is the URL path from RequestMapping (The main mapping from the controller)
+        return "redirect:/students";
+    }
 
 
     //update student profile
