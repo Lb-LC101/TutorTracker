@@ -153,5 +153,25 @@ public class MeetingController {
         return "redirect:/";
     }
 
+    @GetMapping("overview")
+    public String displayMeetingOverview (@RequestParam int meetingId, Model model) {
+        Optional<Meeting> result = meetingRepository.findById(meetingId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Meeting ID: " + meetingId);
+        } else {
+            Meeting meeting = result.get();
+//            model.addAttribute("title", "Meeting Overview: " +meeting.getMeetingDate());
+//            model.addAttribute("meeting", meeting);
+            model.addAttribute("title", "Edit Meeting Date" + meeting.getMeetingDate());
+            model.addAttribute("title", "Edit Meeting Note" + meeting.getMeetingNote());
+            model.addAttribute("students", studentRepository.findAll());
+            model.addAttribute("books", bookRepository.findAll());
+            model.addAttribute("sightwords", sightwordRepository.findAll());
+            model.addAttribute("spellwords", sightwordRepository.findAll());
+            model.addAttribute("meeting", meeting);
+        }
+        return "meeting/overview";
+    }
 
 }

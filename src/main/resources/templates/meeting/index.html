@@ -41,6 +41,8 @@
                     </td>
 
                     <td><a th:text="Edit" th:value = "${meeting.id}" th:href="'meetings/edit/' + ${meeting.id}"></a></td>
+                    <!--td><a th:text="Overview" th:value = "${meeting.id}" th:href="'meetings/overview/' + ${meeting.id}"></a></td-->
+                    <td><a th:text="Overview" th:href="'/meetings/overview?meetingId=' + ${meeting.id}"></a></td>
                 </tr>
             </table>
             <input type="submit" value="Return to main menu" class="btn btn-primary">
