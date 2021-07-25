@@ -5,11 +5,13 @@
 <div class="container-fluid">
     <div class="row pt-3">
     </div>
-        <div class="col-md-6 text-center">
+        <div class="col-md-6 text-center"   style="background-color: #b19cd9">
             <div class="font-weight-bold"><H2>Meeting Overview</H2></div>
         </div>
+    <p> </p>
     </div>
     <div class="row pt-3">
+        <p> </p>
         <div class="col-md-3 text-center">
                 <b>Meeting Date</b>
                 <p th:text="${meeting.meetingDate}"></p>
@@ -19,12 +21,13 @@
             <b>Student:</b>
             <p th:text="${meeting.student.firstName}+ ' '+${meeting.student.lastName}"></p>
         </div>
-
     </div>
 
-    <div class="row">
-        <div class="col-md-6 text-center">
-            <p class="font-weight-bold">Book Details:</p>
+    <div class="row pt-3">
+        <div class="col-md-1 text-left"> </div>
+        <div class="col-md-6 text-left">
+            <p> </p>
+            <b>Book Details:</b>
             <th:block th:if="${meeting.books.size() > 0}" th:each="book : ${meeting.books}">
                 <p th:text="${book.bookName}+ ' '+${book.bookDescription}+ ': '+${book.lessonDescription}+ ' - '+${book.procedureDescription}"></p>
             </th:block>
@@ -32,11 +35,11 @@
         </div>
     </div>
 
-    <div class="row"> </div>
+    <p> </p>
 
     <div class="row">
         <div class="col-md-3 text-center">
-            <p class="font-weight-bold">Reading Sightwords:</p>
+            <b>Reading Sightwords:</b>
             <th:block th:if="${meeting.sightwords.size() > 0}" th:each="sightword : ${meeting.sightwords}">
                 <p th:text="${sightword.word}"></p>
             </th:block>
@@ -44,7 +47,7 @@
         </div>
 
        <div class="col-md-3 text-center">
-            <p class="font-weight-bold">Spelling Sightwords:</p>
+            <b class="font-weight-bold">Spelling Sightwords:</b>
             <th:block th:if="${meeting.spellwords.size() > 0}" th:each="spellword : ${meeting.spellwords}">
                 <p th:text="${spellword.word}"></p>
             </th:block>
@@ -53,13 +56,17 @@
     </div>
 
     <div class="row pt-3">
-        <div class="col-md-6 text-center">
-            <div class="font-weight-bold"  th:text="'Meeting Note: '+ ${meeting.meetingNote}"></div>
+    <p> </p>
+        <div class="col-md-1 text-left"> </div>
+        <div class="col-md-6 text-left">
+            <b>Meeting Notes: </b>
+            <div class="font-weight-bold"  th:text="${meeting.meetingNote}"></div>
         </div>
+    </div>
 
     </div>
 
-    </form>
+
 </div>
 </body>
 </html>

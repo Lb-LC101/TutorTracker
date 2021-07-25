@@ -2,34 +2,56 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-<H1>"Welcome to the Tutor Tracker"</H1>
+<div class="row pt-3">
+    <div class="text-center">
+    <H1>Welcome to the Tutor Tracker</H1>
+    </div>
+</div>
 <div></div>
-<h2>Students:</h2>
-<h3>
-<a th:href="@{/students/create}">Create a Student Profile</a>
-<div></div>
-<a th:href="@{/students}">Edit a Student Profile</a>
-</h3>
-<div></div>
-<h2>Books:</h2>
-<h3>
-    <a th:href="@{/books/create}">Create a Book Profile</a>
-    <div></div>
-    <a th:href="@{/books}">Edit a Book Profile</a>
-    <div></div>
-    <a th:href="@{/books}">Copy a Book Profile</a>
-</h3>
-<h2>Sight Words:</h2>
-<h3>
-    <a th:href="@{/sightwords/create}">Create a Sight Word</a>
-    <div></div>
-    <a th:href="@{/sightwords}">Edit a Sight Word</a>
-</h3>
-<h2>Sessions:</h2>
-<h3>
-    <a th:href="@{/meetings/create}">Create a Meeting</a>
-    <div></div>
-    <a th:href="@{/meetings}">Edit a Meeting</a>
-</h3>
+<div class="row pt-3">
+    <div class="col-md-3 text-center">
+        <h2>Students:</h2>
+        <h3>
+        <a th:href="@{/students/create}">Create a Student Profile</a>
+        <div></div>
+        <a th:href="@{/students}">Edit a Student Profile</a>
+        </h3>
+    </div>
+
+
+
+
+    <div class="col-md-3 text-center">
+        <h2>Books:</h2>
+        <h3>
+            <a th:href="@{/books/create}">Create a Book Profile</a>
+            <div></div>
+            <a th:href="@{/books}">Edit a Book Profile</a>
+            <div></div>
+            <a th:href="@{/books}">Copy a Book Profile</a>
+        </h3>
+    </div>
+
+
+    <div class="col-md-3 text-center">
+        <h2>Sight Words:</h2>
+        <h3>
+            <a th:href="@{/sightwords/create}">Create a Sight Word</a>
+            <div></div>
+            <a th:href="@{/sightwords}">Edit a Sight Word</a>
+        </h3>
+    </div>
+</div>
+
+<div class="row pt-3">
+    <div class="col-md-3 text-center">
+        <h2>Sessions:</h2>
+        <h3>
+            <a th:href="@{/meetings/create}">Create a Meeting</a>
+            <div></div>
+            <a th:href="@{/meetings}">Edit a Meeting</a>
+        </h3>
+    </div>
+</div>
 </body>
 </html>
