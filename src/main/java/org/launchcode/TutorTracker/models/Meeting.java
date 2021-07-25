@@ -1,6 +1,8 @@
 package org.launchcode.TutorTracker.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,8 @@ import java.util.List;
 public class Meeting extends AbstractEntity{
 
     //variables
+    @NotBlank(message = "Please select a date")
+    @NotNull
     private String meetingDate;
 
     @Column(length = 65535, columnDefinition = "text")
@@ -20,7 +24,7 @@ public class Meeting extends AbstractEntity{
     private List<Book> books = new ArrayList<>();
 
     @ManyToMany
-  //  @ManyToMany(mappedBy = "meetings")
+    //@ManyToMany(mappedBy = "meetings")
     private List<Sightword> sightwords = new ArrayList<>();
 
     //@ManyToMany(mappedBy = "meetings")

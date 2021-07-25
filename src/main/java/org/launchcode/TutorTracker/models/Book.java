@@ -2,7 +2,6 @@ package org.launchcode.TutorTracker.models;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,32 +14,32 @@ public class Book extends AbstractEntity {
     //variables
     @NotBlank
     @NotNull
-    @Size(min=1, message = "Book name is required")
+    @Size(min = 1, message = "Book name is required")
     private String bookName;
 
     @NotBlank
     @NotNull
-    @Size(min=1, message = "Book description is required")
+    @Size(min = 1, message = "Book description is required")
     private String bookDescription;
 
     @NotBlank
     @NotNull
-    @Size(min=1, message = "Lesson name is required")
+    @Size(min = 1, message = "Lesson name is required")
     private String lessonName;
 
     @NotBlank
     @NotNull
-    @Size(min=1, message = "Lesson description is required")
+    @Size(min = 1, message = "Lesson description is required")
     private String lessonDescription;
 
     @NotBlank
     @NotNull
-    @Size(min=1, message = "Procedure name is required")
+    @Size(min = 1, message = "Procedure name is required")
     private String procedureName;
 
     @NotBlank
     @NotNull
-    @Size(min=1, message = "Procedure description is required")
+    @Size(min = 1, message = "Procedure description is required")
     private String procedureDescription;
 
     @ManyToMany(mappedBy = "books")
@@ -48,7 +47,7 @@ public class Book extends AbstractEntity {
 
     //constructors
 
-     public Book() {
+    public Book() {
     }
 
     //getters and setters

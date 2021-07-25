@@ -51,6 +51,7 @@ public class SightwordController {
 
     }
 
+
     //update sightword profile
     @GetMapping("edit/{sightwordId}")
     public String displayEditSightwordForm(@PathVariable int sightwordId, Model model) {
@@ -66,9 +67,11 @@ public class SightwordController {
     }
 
     @PostMapping("edit")
-    public String processEditSightwordForm(int sightwordId, String word) {
+    public String processEditSightwordForm(int sightwordId, String word, String level, String lesson) {
         Sightword sightword = sightwordRepository.findById(sightwordId).get();
         sightword.setWord(word);
+        sightword.setLevel(level);
+        sightword.setLesson(lesson);
 
         sightwordRepository.save(sightword);
         return "redirect:/sightwords";

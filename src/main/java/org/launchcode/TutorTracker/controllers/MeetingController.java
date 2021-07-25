@@ -76,20 +76,26 @@ public class MeetingController {
         Student selectedStudent = studentRepository.findById(studentId).orElse(new Student());
         newMeeting.setStudent(selectedStudent);
         //add book lesson procedures from checkboxes to the new meeting.
-        List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
-       // newMeeting.addBooks(selectedBook);
+        if (books != null) {
+            List<Book> selectedBook = (List<Book>) bookRepository.findAllById(books);
+        }
+        // newMeeting.addBooks(selectedBook);
         //add sightwords from checkboxes to the new meeting.
-        List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
-        List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
-
+        if ((sightwords != null) && (spellwords != null)) {
+            List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
+            List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
+        } else if ((sightwords != null)) {
+            List<Sightword> selectedSightword = (List<Sightword>) sightwordRepository.findAllById(sightwords);
+        } else if ((spellwords != null)) {
+            List<Sightword> selectedSpellword = (List<Sightword>) sightwordRepository.findAllById(spellwords);
+        }
 
         meetingRepository.save(newMeeting);
         // redirect: is the URL path from RequestMapping (The main mapping from the controller)
         return "redirect:/";
     }
 
-
-    //update meeting profile
+      //update meeting profile
     @GetMapping("edit/{meetingId}")
     public String displayEditMeetingForm(@PathVariable int meetingId, Model model) {
         Optional<Meeting> result = meetingRepository.findById(meetingId);
@@ -109,7 +115,7 @@ public class MeetingController {
     }
 
     @PostMapping("edit")
-    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books,  @RequestParam(required = false) List<Integer> sightwords, @RequestParam(required = false) List<Integer> spellwords, Model model) {
+    public String processEditMeetingForm(int meetingId, String meetingDate, String meetingNote, @RequestParam int studentId, @RequestParam(required = false) List<Integer> books, @RequestParam(required = false) List<Integer> sightwords, @RequestParam(required = false) List<Integer> spellwords, Model model) {
         Meeting meeting = meetingRepository.findById(meetingId).get();
         meeting.setMeetingDate(meetingDate);
         meeting.setMeetingNote(meetingNote);
@@ -146,7 +152,6 @@ public class MeetingController {
         meetingRepository.save(meeting);
         return "redirect:/";
     }
-
 
 
 }

@@ -15,73 +15,100 @@ import java.util.Optional;
 @RequestMapping("books")
 public class BookController {
 
-        @Autowired
-        private BookRepository bookRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
-        @GetMapping
-        public String displayAllBooks(Model model) {
-            model.addAttribute("title", "All Books");
-            model.addAttribute("books", bookRepository.findAll());
-            // book/index is the file path in the project structure
-            return "book/index";
-        }
+    @GetMapping
+    public String displayAllBooks(Model model) {
+        model.addAttribute("title", "All Books");
+        model.addAttribute("books", bookRepository.findAll());
+        // book/index is the file path in the project structure
+        return "book/index";
+    }
 
-        // create is the URL path books/create
-        @GetMapping("create")
-        public String displayCreateBookForm(Model model) {
+    // create is the URL path books/create
+    @GetMapping("create")
+    public String displayCreateBookForm(Model model) {
+        model.addAttribute("title", "Create Book Profile");
+        model.addAttribute(new Book());
+        // book/create is the file path in the project structure
+        return "book/create";
+    }
+
+    @PostMapping("create")
+    public String processCreateBookForm(@Valid @ModelAttribute Book book,
+                                        Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Create Book Profile");
             model.addAttribute(new Book());
             // book/create is the file path in the project structure
             return "book/create";
         }
 
-        @PostMapping("create")
-        public String processCreateBookForm(@Valid @ModelAttribute Book book,
-                                               Errors errors, Model model) {
+        bookRepository.save(book);
+        // redirect: is the URL path from RequestMapping (The main mapping from the controller)
+        return "redirect:/books";
+    }
 
-            if (errors.hasErrors()) {
-                model.addAttribute("title", "Create Book Profile");
-                model.addAttribute(new Book());
-                // book/create is the file path in the project structure
-                return "book/create";
-            }
 
-            bookRepository.save(book);
-            // redirect: is the URL path from RequestMapping (The main mapping from the controller)
-            return "redirect:/books";
+    //update book profile
+    @GetMapping("edit/{bookId}")
+    public String displayEditBookForm(@PathVariable int bookId, Model model) {
+        Optional<Book> result = bookRepository.findById(bookId);
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Book ID: " + bookId);
+        } else {
+            Book book = result.get();
+            model.addAttribute("title", "Edit Book Name" + book.getBookName());
+            model.addAttribute("title", "Edit Book Description" + book.getBookDescription());
+            model.addAttribute("title", "Edit Book Name" + book.getLessonName());
+            model.addAttribute("title", "Edit Book Description" + book.getLessonDescription());
+            model.addAttribute("title", "Edit Book Name" + book.getProcedureName());
+            model.addAttribute("title", "Edit Book Description" + book.getProcedureDescription());
+            model.addAttribute("book", book);
+        }
+        return "book/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditBookForm(int bookId, String bookName, String bookDescription, String lessonName, String lessonDescription, String procedureName, String procedureDescription) {
+        Book book = bookRepository.findById(bookId).get();
+        book.setBookName(bookName);
+        book.setBookDescription(bookDescription);
+        book.setLessonName(lessonName);
+        book.setLessonDescription(lessonDescription);
+        book.setProcedureName(procedureName);
+        book.setProcedureDescription(procedureDescription);
+        bookRepository.save(book);
+        return "redirect:/books";
+    }
+
+    //Copy a book
+    @GetMapping("copy/{bookId}")
+    public String displayCopyBookForm(@PathVariable int bookId, Model model) {
+        Optional<Book> result = bookRepository.findById(bookId);
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Book ID" + bookId);
+        } else {
+            Book book = result.get();
+            model.addAttribute("title", "Copy Book: " + book.getBookName());
+            model.addAttribute("book", book);
+        }
+        return "book/copy";
+    }
+
+    @PostMapping("copy")
+    public String processCopyBookForm(@Valid @ModelAttribute Book book,
+                                      Model model, Errors errors) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Copy Book");
+            model.addAttribute(new Book());
+            return "book/copy";
         }
 
-
-        //update book profile
-        @GetMapping("edit/{bookId}")
-        public String displayEditBookForm(@PathVariable int bookId, Model model) {
-            Optional<Book> result = bookRepository.findById(bookId);
-            if (result.isEmpty()) {
-                model.addAttribute("title", "Invalid Book ID: " + bookId);
-            } else {
-                Book book = result.get();
-                model.addAttribute("title", "Edit Book Name" + book.getBookName());
-                model.addAttribute("title", "Edit Book Description" + book.getBookDescription());
-                model.addAttribute("title", "Edit Book Name" + book.getLessonName());
-                model.addAttribute("title", "Edit Book Description" + book.getLessonDescription());
-                model.addAttribute("title", "Edit Book Name" + book.getProcedureName());
-                model.addAttribute("title", "Edit Book Description" + book.getProcedureDescription());
-                model.addAttribute("book", book);
-            }
-            return "book/edit";
-        }
-
-        @PostMapping("edit")
-        public String processEditBookForm(int bookId, String bookName, String bookDescription, String lessonName, String lessonDescription, String procedureName, String procedureDescription) {
-            Book book = bookRepository.findById(bookId).get();
-            book.setBookName(bookName);
-            book.setBookDescription(bookDescription);
-            book.setLessonName(lessonName);
-            book.setLessonDescription(lessonDescription);
-            book.setProcedureName(procedureName);
-            book.setProcedureDescription(procedureDescription);
-            bookRepository.save(book);
-            return "redirect:/books";
-        }
+        bookRepository.save(book);
+        return "redirect:/books";
+    }
 
 }

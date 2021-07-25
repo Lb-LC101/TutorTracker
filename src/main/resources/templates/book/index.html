@@ -25,6 +25,7 @@
                     <td><a th:text="${book.ProcedureName}"></a></td>
                     <td><a th:text="${book.ProcedureDescription}"></a></td>
                     <td><a th:text="Edit" th:value = "${book.id}" th:href="'books/edit/' + ${book.id}"></a></td>
+                    <td><a th:text="Copy" th:value = "${book.id}" th:href="'books/copy/' + ${book.id}"></a></td>
                 </tr>
             </table>
             <input type="submit" value="Return to main menu" class="btn btn-primary">
