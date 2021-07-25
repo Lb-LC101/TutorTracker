@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<div class="container-fluid">
+    <form method="post" th:action="@{/books/copy}">
+        <input type="hidden" th:value="${book.id}" name="bookId">
+        <div class="form-group">
+            <label>Book Name
+                <input th:field="${book.bookName}" required class="form-control">
+            </label>
+            <span th:errors="${book.bookName}" class="error"></span>
+        </div>
+        <label>Book Description
+            <input th:field="${book.bookDescription}" required class="form-control">
+        </label>
+        <span th:errors="${book.bookDescription}" class="error"></span>
+        <div class="form-group">
+            <label>Lesson Name
+                <input th:field="${book.lessonName}" required class="form-control">
+            </label>
+            <span th:errors="${book.lessonName}" class="error"></span>
+        </div>
+        <label>Lesson Description
+            <input th:field="${book.lessonDescription}" required class="form-control">
+        </label>
+        <span th:errors="${book.lessonDescription}" class="error"></span>
+        <div class="form-group">
+            <label>Procedure Name
+                <input th:field="${book.procedureName}" required class="form-control">
+            </label>
+            <span th:errors="${book.procedureName}" class="error"></span>
+        </div>
+        <label>Procedure Description
+            <input th:field="${book.procedureDescription}" required class="form-control">
+        </label>
+        <span th:errors="${book.procedureDescription}" class="error"></span>
+        <input type="submit" value="Copy Complete" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>
