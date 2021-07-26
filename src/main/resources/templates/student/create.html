@@ -11,9 +11,63 @@
     </div>
     <div class="form-group">
         <label>Last Name
-            <textarea th:field="${student.lastName}" th:value="${student.lastName}" class="form-control"></textarea>
+            <input th:field="${student.lastName}" th:value="${student.lastName}" class="form-control">
         </label>
         <span th:errors="${student.lastName}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Address
+            <input th:field="${student.address1}" th:value="${student.address1}" class="form-control">
+        </label>
+        <span th:errors="${student.address1}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Apt
+            <input th:field="${student.address2}" th:value="${student.address2}" class="form-control">
+        </label>
+        <span th:errors="${student.address2}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>City
+            <input th:field="${student.city}" th:value="${student.city}" class="form-control">
+        </label>
+        <span th:errors="${student.city}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>State
+            <input th:field="${student.state}" th:value="${student.state}" class="form-control">
+        </label>
+        <span th:errors="${student.state}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Zip Code
+            <input th:field="${student.zip}" th:value="${student.zip}" class="form-control">
+        </label>
+        <span th:errors="${student.zip}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Phone
+            <textarea th:field="${student.phone}" th:value="${student.phone}" class="form-control"></textarea>
+        </label>
+        <span th:errors="${student.phone}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Email
+            <textarea th:field="${student.email}" th:value="${student.email}" class="form-control"></textarea>
+        </label>
+        <span th:errors="${student.email}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Birth Date
+            <input type="date" th:field="${student.birthdate}" th:value="${student.birthdate}" class="form-control">
+        </label>
+        <span th:errors="${student.birthdate}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label>Note
+            <textarea type="date" th:field="${student.note}" th:value="${student.note}" class="form-control"></textarea>
+        </label>
+        <span th:errors="${student.note}" class="error"></span>
     </div>
     <input type="submit" value="Create Student Profile" class="btn btn-primary">
 </form>

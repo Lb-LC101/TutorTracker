@@ -14,8 +14,9 @@
                 </tr>
                 </thead>
                 <tr th:each="student : ${students}">
-                    <td><a th:text="${student.FirstName}"></a></td>
-                    <td><a th:text="${student.LastName}"></a></td>
+                    <td><a th:text="${student.FirstName}" th:href="'/students/profile?studentId=' + ${student.id}"></a></td>
+
+                    <td><a th:text="${student.LastName}"  th:href="'/students/profile?studentId=' + ${student.id}"></a></td>
                     <td><a th:text="Edit" th:value = "${student.id}" th:href="'students/edit/' + ${student.id}"></a></td>
                 </tr>
             </table>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<div class="container-fluid">
+    <form method="post" th:action="@{/students/profile}">
+        <input type="hidden" th:value="${student.id}" name="studentId">
+        <div class="form-group">
+            <div class="font-weight-bold">Student Name: <span th:text="${student.firstName}+' '+ ${student.lastName}"></span></div>
+
+
+            <div class="font-weight-bold">Address: <span th:text="${student.address1}" ></span>
+            </div>
+
+            <div class="font-weight-bold">
+                <span th:text="${student.address2}" ></span>
+            </div>
+
+            <div class="font-weight-bold">City State Zip: <span th:text="${student.city} + ' ' + ${student.state} + ' ' + ${student.zip}" ></span>
+            </div>
+
+            <div class="font-weight-bold">Phone: <span th:text="${student.phone}" ></span>
+            </div>
+
+            <div class="font-weight-bold">Email: <span th:text="${student.email}" ></span>
+            </div>
+
+            <div class="font-weight-bold">Birth Date: <span th:text="${student.birthdate}" ></span>
+            </div>
+
+            <div class="font-weight-bold">Notes:
+                <span th:text="${student.note}"></span>
+            </div>
+        </div>
+
+        <input type="submit" value="Return" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>

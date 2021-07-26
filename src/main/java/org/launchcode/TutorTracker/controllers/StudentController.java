@@ -1,6 +1,7 @@
 package org.launchcode.TutorTracker.controllers;
 
 import org.launchcode.TutorTracker.data.StudentRepository;
+import org.launchcode.TutorTracker.models.Meeting;
 import org.launchcode.TutorTracker.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,11 +69,43 @@ public class StudentController {
     }
 
     @PostMapping("edit")
-    public String processEditStudentForm(int studentId, String firstName, String lastName) {
+    public String processEditStudentForm(int studentId, String firstName, String lastName, String address1, String address2, String city, String state, String zip, String phone, String email, String birthdate, String note) {
         Student student = studentRepository.findById(studentId).get();
         student.setFirstName(firstName);
         student.setLastName(lastName);
+        student.setAddress1(address1);
+        student.setAddress2(address2);
+        student.setCity(city);
+        student.setState(state);
+        student.setZip(zip);
+        student.setPhone(phone);
+        student.setEmail(email);
+        student.setBirthdate(birthdate);
+        student.setNote(note);
         studentRepository.save(student);
+        return "redirect:/students";
+    }
+
+    @GetMapping("profile")
+    public String displayStudentProfile (@RequestParam int studentId, Model model) {
+        Optional<Student> result = studentRepository.findById(studentId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Student ID: " + studentId);
+        } else {
+           Student student = result.get();
+
+            model.addAttribute("title", "Student Profile: " + student.getLastName());
+            model.addAttribute("student", student);
+
+
+        }
+        return "student/profile";
+    }
+
+    @PostMapping("profile")
+    public String processStudentProfile(@Valid @ModelAttribute Student student,
+                                        Errors errors, Model model){
         return "redirect:/students";
     }
 }
