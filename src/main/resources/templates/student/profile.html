@@ -5,35 +5,73 @@
 <div class="container-fluid">
     <form method="post" th:action="@{/students/profile}">
         <input type="hidden" th:value="${student.id}" name="studentId">
+        <div class="row pt-3">
+            <div class="col-md-6 text-center"   style="background-color: #b19cd9">
+                <div class="font-weight-bold"><H2>Student Profile</H2></div>
+            </div>
+            <p> </p>
+        </div>
         <div class="form-group">
-            <div class="font-weight-bold">Student Name: <span th:text="${student.firstName}+' '+ ${student.lastName}"></span></div>
+            <div class="row pt-3">
+                <div class="col-md-6" >
+                    <div class="font-weight-bold" style="color: #b19cd9"><H3>Student Name: <span style="color: black" th:text="${student.firstName}+' '+ ${student.lastName}"></span></H3></div>
+                </div>
+                <p> </p>
+            </div>
+            <div class="row pt-3">
+                <div class="col-md-6" >
+                    <div class="font-weight-bold" style="color: #b19cd9"><H3>Address: <span style="color: black" th:text="${student.address1}" ></span></H3></div>
+                </div>
+                <p> </p>
+            </div>
+            <div class="row pt-3">
+                <div class="col-md-1"> </div>
+                <div class="col-md-6">
 
-
-            <div class="font-weight-bold">Address: <span th:text="${student.address1}" ></span>
+                    <div class="font-weight-bold"><H3><span style="color: black" th:text="${student.address2}" ></span></H3></div>
+                </div>
+                <p> </p>
+            </div>
+            <div class="row pt-3">
+                <div class="col-md-6" >
+                    <div class="font-weight-bold" style="color: #b19cd9"><H3>City State Zip: <span style="color: black" th:text="${student.city} + ', ' + ${student.state} + ' ' + ${student.zip}" ></span></H3></div>
+                </div>
+                <p> </p>
+            </div>
+            <div class="row pt-3">
+                <div class="col-md-6" >
+                    <div class="font-weight-bold" style="color: #b19cd9"><H3>Phone: <span style="color: black" th:text="${student.phone}" ></span></H3></div>
+                </div>
+                <p> </p>
+            </div>
+            <div class="row pt-3">
+                <div class="col-md-6" >
+                    <div class="font-weight-bold" style="color: #b19cd9"><H3>Email: <span style="color: black" th:text="${student.email}" ></span></H3></div>
+                </div>
+                <p> </p>
             </div>
 
-            <div class="font-weight-bold">
-                <span th:text="${student.address2}" ></span>
+            <div class="row pt-3">
+                <div class="col-md-6 " >
+                    <div class="font-weight-bold" style="color: #b19cd9"><H3>Birth Date: <span style="color: black" th:text="${student.birthdate}" ></span></H3></div>
+                </div>
+                <p> </p>
             </div>
-
-            <div class="font-weight-bold">City State Zip: <span th:text="${student.city} + ' ' + ${student.state} + ' ' + ${student.zip}" ></span>
-            </div>
-
-            <div class="font-weight-bold">Phone: <span th:text="${student.phone}" ></span>
-            </div>
-
-            <div class="font-weight-bold">Email: <span th:text="${student.email}" ></span>
-            </div>
-
-            <div class="font-weight-bold">Birth Date: <span th:text="${student.birthdate}" ></span>
-            </div>
-
-            <div class="font-weight-bold">Notes:
-                <span th:text="${student.note}"></span>
+            <div class="row pt-3">
+                <div class="col-md-6" >
+                    <div class="font-weight-bold" style="color: #b19cd9"><H3>Notes:
+                        <span style="color: black" th:text="${student.note}"></span></H3></div>
+                </div>
+                <p> </p>
             </div>
         </div>
+        <div class="row pt-3">
+            <div class="col-md-6" >
+                <input type="submit" value="Return" class="btn btn-primary">
+            </div>
+            <p> </p>
+        </div>
 
-        <input type="submit" value="Return" class="btn btn-primary">
     </form>
 </div>
 </body>

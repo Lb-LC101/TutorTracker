@@ -103,9 +103,15 @@ public class StudentController {
         return "student/profile";
     }
 
+    //Return to student list
     @PostMapping("profile")
     public String processStudentProfile(@Valid @ModelAttribute Student student,
                                         Errors errors, Model model){
         return "redirect:/students";
     }
+
+    //Return to main menu
+    @PostMapping("cancel")
+    public String cancelForm(){
+        return "redirect:/";    }
 }
