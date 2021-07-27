@@ -3,70 +3,74 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <div class="container-fluid">
-    <div class="row pt-3">
-    </div>
-        <div class="col-md-6 text-center"   style="background-color: #b19cd9">
-            <div class="font-weight-bold"><H2>Meeting Overview</H2></div>
-        </div>
-    <p> </p>
-    </div>
-    <div class="row pt-3">
-        <p> </p>
-        <div class="col-md-3 text-center">
-                <b>Meeting Date</b>
-                <p th:text="${meeting.meetingDate}"></p>
-        </div>
-
-        <div class="col-md-3 text-center">
-            <b>Student:</b>
-            <p th:text="${meeting.student.firstName}+ ' '+${meeting.student.lastName}"></p>
-        </div>
-    </div>
-
-    <div class="row pt-3">
-        <div class="col-md-1 text-left"> </div>
-        <div class="col-md-6 text-left">
+    <form method="post" th:action="@{/meetings/overview}">
+        <input type="hidden" th:value="${meeting.id}" name="meetingId">
+        <div class="row pt-3">
+            <div class="col-md-6 text-center"   style="background-color: #b19cd9">
+                <div class="font-weight-bold"><H2>Meeting Overview</H2></div>
+            </div>
             <p> </p>
-            <b>Book Details:</b>
-            <th:block th:if="${meeting.books.size() > 0}" th:each="book : ${meeting.books}">
-                <p th:text="${book.bookName}+ ' '+${book.bookDescription}+ ': '+${book.lessonDescription}+ ' - '+${book.procedureDescription}"></p>
-            </th:block>
-            <p th:unless="${meeting.books.size()}">No Book Detail Available</p>
         </div>
-    </div>
+        <div class="row pt-3">
+            <p> </p>
+            <div class="col-md-3 text-center">
+                    <b>Meeting Date</b>
+                    <p th:text="${meeting.meetingDate}"></p>
+            </div>
 
-    <p> </p>
-
-    <div class="row">
-        <div class="col-md-3 text-center">
-            <b>Reading Sightwords:</b>
-            <th:block th:if="${meeting.sightwords.size() > 0}" th:each="sightword : ${meeting.sightwords}">
-                <p th:text="${sightword.word}"></p>
-            </th:block>
-            <p th:unless="${meeting.sightwords.size()}">No Reading Sightword Detail Available</p>
+            <div class="col-md-3 text-center">
+                <b>Student:</b>
+                <p th:text="${meeting.student.firstName}+ ' '+${meeting.student.lastName}"></p>
+            </div>
         </div>
 
-       <div class="col-md-3 text-center">
-            <b class="font-weight-bold">Spelling Sightwords:</b>
-            <th:block th:if="${meeting.spellwords.size() > 0}" th:each="spellword : ${meeting.spellwords}">
-                <p th:text="${spellword.word}"></p>
-            </th:block>
-            <p th:unless="${meeting.spellwords.size()}">No Spelling Sightword Detail Available</p>
+        <div class="row pt-3">
+            <div class="col-md-1 text-left"> </div>
+            <div class="col-md-6 text-left">
+                <p> </p>
+                <b>Book Details:</b>
+                <th:block th:if="${meeting.books.size() > 0}" th:each="book : ${meeting.books}">
+                    <p th:text="${book.bookName}+ ' '+${book.bookDescription}+ ': '+${book.lessonDescription}+ ' - '+${book.procedureDescription}"></p>
+                </th:block>
+                <p th:unless="${meeting.books.size()}">No Book Detail Available</p>
+            </div>
         </div>
-    </div>
 
-    <div class="row pt-3">
-    <p> </p>
-        <div class="col-md-1 text-left"> </div>
-        <div class="col-md-6 text-left">
-            <b>Meeting Notes: </b>
-            <div class="font-weight-bold"  th:text="${meeting.meetingNote}"></div>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <b>Reading Sightwords:</b>
+                <th:block th:if="${meeting.sightwords.size() > 0}" th:each="sightword : ${meeting.sightwords}">
+                    <p th:text="${sightword.word}"></p>
+                </th:block>
+                <p th:unless="${meeting.sightwords.size()}">No Reading Sightword Detail Available</p>
+            </div>
+
+           <div class="col-md-3 text-center">
+                <b class="font-weight-bold">Spelling Sightwords:</b>
+                <th:block th:if="${meeting.spellwords.size() > 0}" th:each="spellword : ${meeting.spellwords}">
+                    <p th:text="${spellword.word}"></p>
+                </th:block>
+                <p th:unless="${meeting.spellwords.size()}">No Spelling Sightword Detail Available</p>
+            </div>
         </div>
-    </div>
 
-    </div>
+        <div class="row pt-3">
+            <p> </p>
+            <div class="col-md-1 text-left"> </div>
+            <div class="col-md-6 text-left">
+                <b>Meeting Notes: </b>
+                <div class="font-weight-bold"  th:text="${meeting.meetingNote}"></div>
+            </div>
+        </div>
 
-
+        <div class="row pt-3">
+            <p> </p>
+            <div class="col-md-1 text-left"> </div>
+            <div class="col-md-6 text-left">
+                <input type="submit" value="Return" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

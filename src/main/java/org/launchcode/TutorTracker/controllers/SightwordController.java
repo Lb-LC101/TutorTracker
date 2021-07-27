@@ -77,4 +77,8 @@ public class SightwordController {
         return "redirect:/sightwords";
     }
 
+    @PostMapping("cancel")
+    public String cancelEditSightwordForm(){
+      return "redirect:/sightwords";    }
+
 }

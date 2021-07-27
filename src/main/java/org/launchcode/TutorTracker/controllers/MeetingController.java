@@ -174,4 +174,10 @@ public class MeetingController {
         return "meeting/overview";
     }
 
+    @PostMapping("overview")
+    public String processMeetingOverview(@Valid @ModelAttribute Meeting meeting,
+                                        Errors errors, Model model){
+        return "redirect:/meetings";
+    }
+
 }
