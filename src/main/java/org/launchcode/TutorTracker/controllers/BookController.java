@@ -111,4 +111,8 @@ public class BookController {
         return "redirect:/books";
     }
 
+    //Return to main menu
+    @PostMapping("cancel")
+    public String cancelForm(){
+        return "redirect:/";    }
 }

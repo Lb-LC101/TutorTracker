@@ -180,4 +180,9 @@ public class MeetingController {
         return "redirect:/meetings";
     }
 
+    //Return to main menu
+    @PostMapping("cancel")
+    public String cancelForm(){
+        return "redirect:/";    }
+
 }

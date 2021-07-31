@@ -7,7 +7,7 @@
             <h2 th:unless="${students} and ${students.size()}">No Student Profiles Exist
                 <a th:href="@{/students/create}">create a Student Profile</a></h2>
             <table class="table table-striped" th:if="${students} and ${students.size()} > 0">
-                <thead>
+                <thead><br>Click on a student's name to view full profile
                 <tr>
                     <th>Student First Name</th>
                     <th>Student last Name</th>

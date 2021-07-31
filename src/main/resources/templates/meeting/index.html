@@ -19,7 +19,7 @@
                 </thead>
                 <tr th:each="meeting : ${meetings}">
                     <td><a th:text="${meeting.meetingDate}"></a></td>
-                    <td><a th:text="${meeting.meetingNote}"></a></td>
+                    <td><span th:text="${meeting.meetingNote}"></span></td>
                     <td><a th:text="${meeting.student.firstName}+' '+${meeting.student.lastName}"></a></td>
 
                     <td>

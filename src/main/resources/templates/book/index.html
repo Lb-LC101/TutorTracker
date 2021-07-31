@@ -18,12 +18,12 @@
                 </tr>
                 </thead>
                 <tr th:each="book : ${books}">
-                    <td><a th:text="${book.BookName}"></a></td>
-                    <td><a th:text="${book.BookDescription}"></a></td>
-                    <td><a th:text="${book.LessonName}"></a></td>
-                    <td><a th:text="${book.LessonDescription}"></a></td>
-                    <td><a th:text="${book.ProcedureName}"></a></td>
-                    <td><a th:text="${book.ProcedureDescription}"></a></td>
+                    <td><p th:text="${book.BookName}"></p></td>
+                    <td><p th:text="${book.BookDescription}"></p></td>
+                    <td><p th:text="${book.LessonName}"></p></td>
+                    <td><p th:text="${book.LessonDescription}"></p></td>
+                    <td><p th:text="${book.ProcedureName}"></p></td>
+                    <td><p th:text="${book.ProcedureDescription}"></p></td>
                     <td><a th:text="Edit" th:value = "${book.id}" th:href="'books/edit/' + ${book.id}"></a></td>
                     <td><a th:text="Copy" th:value = "${book.id}" th:href="'books/copy/' + ${book.id}"></a></td>
                 </tr>
